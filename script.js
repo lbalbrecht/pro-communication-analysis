@@ -1,7 +1,3 @@
-var contentArea = $("#content-here");
-var entities = $("#entities-here");
-
-
 
 var sampleText = "First, the good news: The Moderna vaccine will likely be going into people's arms Monday, boosting the number of Americans who will start getting inoculated against Covid-19. Here is more text in that vein. I do not know why the first text didn't work. Here's a negative sentence, everyone hates you and you should die.";
 
@@ -21,7 +17,6 @@ $.ajax({
     })
   }).then(function(response){
       console.log(response);
-      contentArea.text(response.result.type);
 
       console.log(response.sentences[0].sentiment.type);
 
@@ -42,5 +37,4 @@ $.ajax({
       data: sampleText
   }).then(function(response){
       console.log(response);
-      entities.text(response.annotations[0].spot);
   })

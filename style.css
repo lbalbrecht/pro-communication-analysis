@@ -1,12 +1,30 @@
 body {
     font-family: 'Istok Web', sans-serif;
+    background-color: #fcfaff;
 }
+
+
 
 .navbar {
-    background-color: #533396;
+    background-color: #655485;
     margin-bottom: 10vh; 
+    border-bottom: 2px solid #088c72;
+    border-right: 2px solid #088c72;
 }
 
+
 #submit-button {
-    background-color: #533396;
+    background-color: #655485;
+    border-bottom: 2px solid #088c72;
+    border-right: 2px solid #088c72;
 }
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem; 
+    background-color: #655485;
+    border-bottom: 2px solid #088c72;
+    border-left: 2px solid #088c72;         
+  }

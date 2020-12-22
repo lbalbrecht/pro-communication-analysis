@@ -1,46 +1,43 @@
+$(document).ready(function () {
+    // handle the form submission
+    $("#user-text").submit(function (event) {
+        // prevent the default form behavior
+        event.preventDefault();
 
-// Grabs the "submit" button
-var submitButton = $("#submit-button");
+        // make the ajax call
+        $.ajax({
+            // data is the text the user entered
+            data: $("#textarea1").val(),
+            // my server that handles the authenticated api request
+            url: "http://34.83.70.58:5000/",
+            method: "POST"
+        }).then(function (response) {
+            // call the display functions with the response data
+            displaySentiment(response.sentiment);
+            dispplayEntities(response.entities);
+            displayEntitySentiment(response.entitySentiment);
+            displaySyntax(response.syntax);
+        });
+    });
+});
 
-var sampleText = "First, the good news: The Moderna vaccine will likely be going into people's arms Monday, boosting the number of Americans who will start getting inoculated against Covid-19. Here is more text in that vein. I do not know why the first text didn't work. Here's a negative sentence, everyone hates you and you should die.";
+// TODO display the sentiment
+function displaySentiment(sentiment) {
 
-var queryURL = "https://sentim-api.herokuapp.com/api/v1/";
+}
 
-var entityURL = "https://api.dandelion.eu/datatxt/nex/v1/?lang=en&text=" + sampleText + "&token=fbcac4b6dc234d639b4e5d6c14191f7f";
+// TODO display the entities
+function dispplayEntities(entities) {
 
+}
 
+// TODO display the entity sentiment
+// might combine with display entities depending on how we use it
+function displayEntitySentiment(entitySentiment) {
 
+}
 
-$.ajax({
-    url: queryURL,
-    method: "POST",
-    headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-    },
-    data: JSON.stringify({
-        text: sampleText
-    })
-  }).then(function(response){
-      console.log(response);
+// TODO process and potentially display syntax data
+function displaySyntax(syntax) {
 
-      console.log(response.sentences[0].sentiment.type);
-
-      for(i=0; i<response.sentences.length; i++){
-          if(response.sentences[i].sentiment.polarity<0){
-              console.log("You're a jerk")
-          }
-          else{
-              console.log("Nah you're good");
-          }
-      }
-    
-  })
-
-  $.ajax({
-      url: entityURL,
-      method: "POST",
-      data: sampleText
-  }).then(function(response){
-      console.log(response);
-  })
+}

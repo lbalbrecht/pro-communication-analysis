@@ -4,4 +4,9 @@ body {
 
 .navbar {
     background-color: #533396;
+    margin-bottom: 10vh; 
+}
+
+#submit-button {
+    background-color: #533396;
 }

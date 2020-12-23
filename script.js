@@ -36,8 +36,8 @@ function displaySentiment(sentiment) {
             var greenAndBlue = Math.floor(256 * (1+sentiment.sentences[i].sentiment.score));
             sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
         }
-        $("#user-text").append(sentenceSpan);
-        $("#user-text").append(" ");
+        $("#response").append(sentenceSpan);
+        $("#response").append(" ");
     }
 }
 

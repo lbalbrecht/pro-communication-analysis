@@ -25,35 +25,32 @@ $(document).ready(function () {
 function displaySentiment(sentiment) {
     // console.log(sentiment);
     // for(i=0; i<sentiment.sentences.length; i++){
-    //     // console.log(sentiment.sentences[i].text);
-    //     // console.log(sentiment.sentences[i].sentiment.magnitude);
-    //     // console.log(sentiment.sentences[i].sentiment.score);
-
+    //     console.log(sentiment.sentences[i].text);
+    //     console.log(sentiment.sentences[i].sentiment.magnitude);
+    //     console.log(sentiment.sentences[i].sentiment.score);
     // }
 
 }
 
 // TODO display the entities
-function displayEntities(entities) {
-    console.log(entities);
+// function displayEntities(entities) {
+//     // console.log(entities);
 
-    for(i=0; i<entities.entities.length; i++){
-        if(entities.entities[i].metadata.wikipedia_url === undefined){
-            console.log("that's rough buddy");
-        }
-        else{
-            console.log(entities.entities[i].metadata.wikipedia_url);
-            addWikiExtract(entities.entities[i]);
-            console.log(entities.entities[i]);
-        }      
-    }
+//     // for(i=0; i<entities.entities.length; i++){
+//     //     displayEntitySentiment();     
+//     // }
 
-}
+// }
 
 // TODO display the entity sentiment
 // might combine with display entities depending on how we use it
 function displayEntitySentiment(entitySentiment) {
-    // console.log(entitySentiment);
+    console.log(entitySentiment);
+    for(i=0; i<entitySentiment.entities.length; i++){
+        console.log(entitySentiment.entities[i].metadata.wikipedia_url)
+        console.log(entitySentiment.entities[i].sentiment.score);
+        console.log(entitySentiment.entities[i].sentiment.magnitude);
+    }
 
 }
 

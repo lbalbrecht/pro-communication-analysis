@@ -14,7 +14,7 @@ $(document).ready(function () {
         }).then(function (response) {
             // call the display functions with the response data
             displaySentiment(response.sentiment);
-            dispplayEntities(response.entities);
+            displayEntities(response.entities);
             displayEntitySentiment(response.entitySentiment);
             displaySyntax(response.syntax);
         });
@@ -23,22 +23,43 @@ $(document).ready(function () {
 
 // TODO display the sentiment
 function displaySentiment(sentiment) {
+    // console.log(sentiment);
+    // for(i=0; i<sentiment.sentences.length; i++){
+    //     // console.log(sentiment.sentences[i].text);
+    //     // console.log(sentiment.sentences[i].sentiment.magnitude);
+    //     // console.log(sentiment.sentences[i].sentiment.score);
+
+    // }
 
 }
 
 // TODO display the entities
-function dispplayEntities(entities) {
+function displayEntities(entities) {
+    console.log(entities);
+
+    for(i=0; i<entities.entities.length; i++){
+        if(entities.entities[i].metadata.wikipedia_url === undefined){
+            console.log("that's rough buddy");
+        }
+        else{
+            console.log(entities.entities[i].metadata.wikipedia_url);
+            addWikiExtract(entities.entities[i]);
+            console.log(entities.entities[i]);
+        }      
+    }
 
 }
 
 // TODO display the entity sentiment
 // might combine with display entities depending on how we use it
 function displayEntitySentiment(entitySentiment) {
+    // console.log(entitySentiment);
 
 }
 
 // TODO process and potentially display syntax data
 function displaySyntax(syntax) {
+    // console.log(syntax);
 
 }
 

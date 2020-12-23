@@ -64,13 +64,16 @@ function displaySyntax(syntax) {
 // to get an object with the title of the page and the intro as an extract
 // set the wiki data as a property of the entity for future reference
 function addWikiExtract(entity) {
-    // replace the page url with the api url and my parameters
-    // keeping the domain ([language].wikipedia.org) and the title the same
-    // for cross language compatability
-    $.getJSON(entity.metadata.wikipedia_url.replace("wiki/", "w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*&titles="),
-        function (response) {
-            // there should only be one page returned, so we get the first one and
-            // set it as the wiki property of the entity
-            entity.wiki = Object.values(response.query.pages)[0];
-        });
+    // make sure this entity has a wikipedia url
+    if (entity.metadata.wikipedia_url != undefined) {
+        // replace the page url with the api url and my parameters
+        // keeping the domain ([language].wikipedia.org) and the title the same
+        // for cross language compatability
+        $.getJSON(entity.metadata.wikipedia_url.replace("wiki/", "w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*&titles="),
+            function (response) {
+                // there should only be one page returned, so we get the first one and
+                // set it as the wiki property of the entity
+                entity.wiki = Object.values(response.query.pages)[0];
+            });
+    }
 }

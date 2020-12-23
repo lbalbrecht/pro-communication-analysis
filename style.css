@@ -7,9 +7,11 @@ body {
 
 .navbar {
     background-color: #655485;
-    margin-bottom: 10vh; 
-    border-bottom: 2px solid #088c72;
-    border-right: 2px solid #088c72;
+}
+
+.brand-logo {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 
@@ -20,7 +22,7 @@ body {
 }
 
 #footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 2.5rem; 

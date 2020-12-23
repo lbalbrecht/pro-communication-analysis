@@ -53,9 +53,10 @@ function addWikiExtract(entity) {
         // for cross language compatability
         $.getJSON(entity.metadata.wikipedia_url.replace("wiki/", "w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*&titles="),
             function (response) {
-                // there should only be one page returned, so we get the first one and
-                // set it as the wiki property of the entity
-                entity.wiki = Object.values(response.query.pages)[0];
+                // there should only be one page returned, so we get the first one
+                var wiki = Object.values(response.query.pages)[0];
+
+                // TODO display the data
             });
     }
 }

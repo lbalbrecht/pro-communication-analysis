@@ -19,7 +19,6 @@ $(document).ready(function () {
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);
-            dispplayEntities(response.entities);
             displayEntitySentiment(response.entitySentiment);
             displaySyntax(response.syntax);
         });
@@ -31,13 +30,7 @@ function displaySentiment(sentiment) {
 
 }
 
-// TODO display the entities
-function dispplayEntities(entities) {
-
-}
-
-// TODO display the entity sentiment
-// might combine with display entities depending on how we use it
+// TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
 
 }

@@ -12,22 +12,34 @@ $(document).ready(function () {
             url: "http://34.83.70.58:5000/",
             method: "POST"
         }).then(function (response) {
-
-                var inputText = $("#textarea1").val()
-                $("#feedback").show("slow")
-                $("#user-text").append(inputText)
-
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
             displaySyntax(response.syntax);
+            
+            $("#feedback").show("slow");
         });
     });
 });
 
 // TODO display the sentiment
 function displaySentiment(sentiment) {
+    console.log(sentiment);
 
+    for (var i = 0; i < sentiment.sentences.length; i++) {
+        var sentenceSpan = $("<span>");
+        sentenceSpan.addClass(`sentence-${i}`);
+        sentenceSpan.text(sentiment.sentences[i].text.content);
+        if (sentiment.sentences[i].sentiment.score > 0) {
+            var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));
+            sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
+        } else if (sentiment.sentences[i].sentiment.score < 0) {
+            var greenAndBlue = Math.floor(256 * (1+sentiment.sentences[i].sentiment.score));
+            sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
+        }
+        $("#user-text").append(sentenceSpan);
+        $("#user-text").append(" ");
+    }
 }
 
 // TODO display the entities and entity sentiment=

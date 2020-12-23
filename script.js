@@ -3,6 +3,7 @@ $(document).ready(function () {
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
+        var inputText = $("#textarea1").val()
 
         // make the ajax call
         $.ajax({
@@ -13,9 +14,9 @@ $(document).ready(function () {
             method: "POST"
         }).then(function (response) {
 
-                var inputText = $("#textarea1").val()
-                $("#feedback").show("slow")
-                $("#user-text").append(inputText)
+                $("#feedback").show()
+                $("#response").append(inputText)
+                $("#submission").hide()
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);

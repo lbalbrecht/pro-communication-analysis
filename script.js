@@ -24,8 +24,6 @@ $(document).ready(function () {
 
 // TODO display the sentiment
 function displaySentiment(sentiment) {
-    console.log(sentiment);
-
     for (var i = 0; i < sentiment.sentences.length; i++) {
         var sentenceSpan = $("<span>");
         sentenceSpan.addClass(`sentence-${i}`);
@@ -44,11 +42,19 @@ function displaySentiment(sentiment) {
 
 // TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
+    for(i=0; i<entitySentiment.entities.length; i++){
+        // Call the displayWikiExtract function for each entity with a Wikipedia URL
+        displayWikiExtract(entitySentiment.entities[i])
+        // Grab the magnitude and score for each entity in the text
+        console.log(entitySentiment.entities[i].sentiment.score);
+        console.log(entitySentiment.entities[i].sentiment.magnitude);
+    }
 
 }
 
 // TODO process and potentially display syntax data
 function displaySyntax(syntax) {
+    // console.log(syntax);
 
 }
 
@@ -67,6 +73,7 @@ function displayWikiExtract(entity) {
                 var wiki = Object.values(response.query.pages)[0];
 
                 // TODO display the data
+                console.log(wiki.extract);
             });
     }
 }

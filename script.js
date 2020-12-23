@@ -27,20 +27,24 @@ $(document).ready(function () {
 
 // TODO display the sentiment
 function displaySentiment(sentiment) {
-    // console.log(sentiment);
-    // for(i=0; i<sentiment.sentences.length; i++){
-    //     console.log(sentiment.sentences[i].text);
-    //     console.log(sentiment.sentences[i].sentiment.magnitude);
-    //     console.log(sentiment.sentences[i].sentiment.score);
-    // }
+    // Display the overall sentiment magnitude and score
+    console.log(sentiment.documentSentiment.magnitude);
+    console.log(sentiment.documentSentiment.score);
+    // Display magnitude and score for each sentence in the text
+    for(i=0; i<sentiment.sentences.length; i++){
+        console.log(sentiment.sentences[i].text);
+        console.log(sentiment.sentences[i].sentiment.magnitude);
+        console.log(sentiment.sentences[i].sentiment.score);
+    }
 
 }
 
 // TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
-    console.log(entitySentiment);
     for(i=0; i<entitySentiment.entities.length; i++){
-        console.log(entitySentiment.entities[i].metadata.wikipedia_url)
+        // Call the displayWikiExtract function for each entity with a Wikipedia URL
+        displayWikiExtract(entitySentiment.entities[i])
+        // Grab the magnitude and score for each entity in the text
         console.log(entitySentiment.entities[i].sentiment.score);
         console.log(entitySentiment.entities[i].sentiment.magnitude);
     }
@@ -68,6 +72,7 @@ function displayWikiExtract(entity) {
                 var wiki = Object.values(response.query.pages)[0];
 
                 // TODO display the data
+                console.log(wiki.extract);
             });
     }
 }

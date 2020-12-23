@@ -12,39 +12,76 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <h1>Welcome to our Very Useful App</h1>
-    </nav>
+    <div id="page1">
+        <nav class="navbar">
+            <h1>Welcome to our Very Useful App</h1>
+        </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col s2"></div>
-            <div class="col s8">
-                <div class="row">
-                    <form class="col s12" id="user-text">
-                        <h4>Place your text below for sentiment analysis, or better description when we come up with one.</h4>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                <label for="textarea1"></label>
+        <div class="container">
+            <div class="row">
+                <div class="col s2"></div>
+                <div class="col s8">
+                    <div class="row">
+                        <form class="col s12" id="user-text">
+                            <h4>Place your text below for sentiment analysis, or better description when we come up with
+                                one.</h4>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                    <label for="textarea1"></label>
+                                </div>
+                                <button class="btn waves-effect waves-light" id="submit-button" type="submit"
+                                    name="action">Submit
+                                    <i class="material-icons right"></i>
+                                </button>
                             </div>
-                            <button class="btn waves-effect waves-light" id="submit-button" type="submit"
-                                name="action">Submit
-                                <i class="material-icons right"></i>
-                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col s2"></div>
+            </div>
+
+        </div>
+        <div>
+            <footer class="page-footer" id="footer"></footer>
+        </div>
+    </div>
+
+    <div style="display:none" id="page2">
+        <div class="container">
+            <nav class="navbar">
+                <h1>Our Very Useful Analysis</h1>
+            </nav>
+            <div class="row">
+                <div class="col-md-4">
+                    <p id="user-text">display user text here</p>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <p>Overall scores</p>
+                            </div>
+                            <div class="row">
+                                <p>Text Entities</p>
+                            </div>
                         </div>
-                    </form>
+                        <div class="col-md-6">
+                            <p>info about entities here when clicked? hovered?</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Sentences flagged for revisions</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col s2"></div>
+            <div>
+                <footer class="page-footer" id="footer"></footer>
+            </div>
         </div>
-        
     </div>
-    <div>
-    <footer class="page-footer" id="footer"></footer>
-    </div>
-
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

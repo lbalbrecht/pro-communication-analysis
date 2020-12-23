@@ -3,6 +3,7 @@ $(document).ready(function () {
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
+        var inputText = $("#textarea1").val()
 
         // make the ajax call
         $.ajax({
@@ -13,9 +14,9 @@ $(document).ready(function () {
             method: "POST"
         }).then(function (response) {
 
-                var inputText = $("#textarea1").val()
-                $("#feedback").show("slow")
-                $("#user-text").append(inputText)
+                $("#feedback").show()
+                $("#response").append(inputText)
+                $("#submission").hide()
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);
@@ -27,6 +28,7 @@ $(document).ready(function () {
 
 // TODO display the sentiment
 function displaySentiment(sentiment) {
+    console.log(sentiment)
 
 }
 
@@ -37,7 +39,7 @@ function displayEntitySentiment(entitySentiment) {
 
 // TODO process and potentially display syntax data
 function displaySyntax(syntax) {
-
+    console.log(syntax)
 }
 
 // use the url of a wikipedia page from an entity and the wikipedia api

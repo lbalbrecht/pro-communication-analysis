@@ -12,6 +12,11 @@ $(document).ready(function () {
             url: "http://34.83.70.58:5000/",
             method: "POST"
         }).then(function (response) {
+
+                var inputText = $("#textarea1").val()
+                $("#feedback").show("slow")
+                $("#user-text").append(inputText)
+
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             dispplayEntities(response.entities);

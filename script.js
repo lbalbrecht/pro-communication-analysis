@@ -3,6 +3,7 @@ $(document).ready(function () {
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
+        var inputText = $("#textarea1").val()
 
         // make the ajax call
         $.ajax({

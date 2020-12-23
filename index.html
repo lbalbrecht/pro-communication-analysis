@@ -12,81 +12,83 @@
 </head>
 
 <body>
-    <div id="page1">
-        <nav class="navbar nav-expand">
+    <header>
+        <nav class="nav-expand blue">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo center">re:Analysis</a>
             </div>
         </nav>
-
-        <div class="container">
-            <div class="row">
-                <div class="col s2"></div>
-                <div class="col s8">
-                    <div class="row">
-                        <form class="col s12" id="user-text">
-                            <h4>Place your text below for sentiment analysis, or better description when we come up with
-                                one.</h4>
-                            <div class="row">
-                                <div class="col s12">
-                                    <div class="input-field">
-                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                        <label for="textarea1"></label>
+    </header>
+    <main>
+        <div id="page1">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 xl8 offset-xl2">
+                        <div class="row">
+                            <form class="col s12" id="user-text">
+                                <h4>Place your text below for sentiment analysis, or better description when we come up
+                                    with
+                                    one.</h4>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="input-field">
+                                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                            <label for="textarea1"></label>
+                                        </div>
+                                        <button class="btn waves-effect waves-light teal lighten-1" id="submit-button" type="submit"
+                                            name="action">Submit</button>
                                     </div>
-                                    <button class="btn waves-effect waves-light" id="submit-button" type="submit"
-                                        name="action">Submit
-                                        <i class="material-icons right"></i>
-                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:none" id="page2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p id="user-text">display user text here</p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <p>Overall scores</p>
+                                </div>
+                                <div class="row">
+                                    <p>Text Entities</p>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-md-6">
+                                <p>info about entities here when clicked? hovered?</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Sentences flagged for revisions</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col s2"></div>
             </div>
-
         </div>
-        <div>
-            <footer class="page-footer" id="footer"></footer>
-        </div>
-    </div>
+    </main>
 
-    <div style="display:none" id="page2">
+    <footer class="page-footer blue">
         <div class="container">
-            <nav class="navbar">
-                <h1>Our Very Useful Analysis</h1>
-            </nav>
             <div class="row">
-                <div class="col-md-4">
-                    <p id="user-text">display user text here</p>
+                <div class="col s12">
+                    <h6 class="white-text">Footer Content</h5>
                 </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <p>Overall scores</p>
-                            </div>
-                            <div class="row">
-                                <p>Text Entities</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <p>info about entities here when clicked? hovered?</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Sentences flagged for revisions</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <footer class="page-footer" id="footer"></footer>
             </div>
         </div>
-    </div>
-
+        <div class="footer-copyright">
+            <div class="container">&copy; 2020 re:Analysis</div>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

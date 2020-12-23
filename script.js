@@ -45,7 +45,7 @@ function displaySyntax(syntax) {
 // use the url of a wikipedia page from an entity and the wikipedia api
 // to get an object with the title of the page and the intro as an extract
 // set the wiki data as a property of the entity for future reference
-function addWikiExtract(entity) {
+function displayWikiExtract(entity) {
     // make sure this entity has a wikipedia url
     if (entity.metadata.wikipedia_url != undefined) {
         // replace the page url with the api url and my parameters

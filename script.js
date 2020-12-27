@@ -36,6 +36,8 @@ function displaySentiment(sentiment) {
         console.log(sentiment.sentences[i].text);
         console.log(sentiment.sentences[i].sentiment.magnitude);
         console.log(sentiment.sentences[i].sentiment.score);
+
+        
     }
 
 }

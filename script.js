@@ -21,7 +21,6 @@ $(document).ready(function () {
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
-            displaySyntax(response.syntax);
         });
     });
 });
@@ -54,11 +53,6 @@ function displayEntitySentiment(entitySentiment) {
 
 }
 
-// TODO process and potentially display syntax data
-function displaySyntax(syntax) {
-    // console.log(syntax);
-
-}
 
 // use the url of a wikipedia page from an entity and the wikipedia api
 // to get an object with the title of the page and the intro as an extract

@@ -15,12 +15,21 @@ $(document).ready(function () {
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
+
+            $("#feedback").show();
         });
     });
 });
 
-// TODO display the sentiment
+// display the sentiment
+// TODO display magnitude
 function displaySentiment(sentiment) {
+    // display document score
+    $("#score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
+
+    // display each sentence with color for the score
+    // TODO display magnitude (on hover?)
+    $("#response").empty();
     for (var i = 0; i < sentiment.sentences.length; i++) {
         var sentenceSpan = $("<span>");
         sentenceSpan.addClass(`sentence-${i}`);

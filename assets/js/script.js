@@ -28,13 +28,15 @@ function displaySentiment(sentiment) {
     $("#score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
 
     // display each sentence with color for the score
-    // TODO display magnitude (on hover?)
+    // display magnitude on hover
+    // TODO add paragraph breaks from submitted text
     $("#response").empty();
     for (var i = 0; i < sentiment.sentences.length; i++) {
         var sentenceSpan = $("<span>");
         sentenceSpan.addClass(`sentence-${i} tooltipped`);
         sentenceSpan.attr("data-position", "right");
-        sentenceSpan.attr("data-tooltip", sentiment.sentences[i].sentiment.magnitude);
+        // TODO better description than sentiment magnitude
+        sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
             var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));

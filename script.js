@@ -3,7 +3,6 @@ $(document).ready(function () {
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
-        var inputText = $("#textarea1").val()
 
         // make the ajax call
         $.ajax({
@@ -13,32 +12,38 @@ $(document).ready(function () {
             url: "http://34.83.70.58:5000/",
             method: "POST"
         }).then(function (response) {
-
-                $("#feedback").show()
-                $("#response").append(inputText)
-                $("#submission").hide()
-
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
+
+            $("#feedback").show();
         });
     });
 });
 
-// TODO display the sentiment
+// display the sentiment
+// TODO display magnitude
 function displaySentiment(sentiment) {
-    // Display the overall sentiment magnitude and score
-    console.log(sentiment.documentSentiment.magnitude);
-    console.log(sentiment.documentSentiment.score);
-    // Display magnitude and score for each sentence in the text
-    for(i=0; i<sentiment.sentences.length; i++){
-        console.log(sentiment.sentences[i].text);
-        console.log(sentiment.sentences[i].sentiment.magnitude);
-        console.log(sentiment.sentences[i].sentiment.score);
+    // display document score
+    $("#score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
 
-        
+    // display each sentence with color for the score
+    // TODO display magnitude (on hover?)
+    $("#response").empty();
+    for (var i = 0; i < sentiment.sentences.length; i++) {
+        var sentenceSpan = $("<span>");
+        sentenceSpan.addClass(`sentence-${i}`);
+        sentenceSpan.text(sentiment.sentences[i].text.content);
+        if (sentiment.sentences[i].sentiment.score > 0) {
+            var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));
+            sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
+        } else if (sentiment.sentences[i].sentiment.score < 0) {
+            var greenAndBlue = Math.floor(256 * (1+sentiment.sentences[i].sentiment.score));
+            sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
+        }
+        $("#response").append(sentenceSpan);
+        $("#response").append(" ");
     }
-
 }
 
 // TODO display the entities and entity sentiment=

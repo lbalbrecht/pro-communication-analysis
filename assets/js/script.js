@@ -35,7 +35,7 @@ function displaySentiment(sentiment) {
     $("#response").empty();
     for (var i = 0; i < sentiment.sentences.length; i++) {
         var sentenceSpan = $("<span>");
-        sentenceSpan.addClass(`sentence-${i} tooltipped`);
+        sentenceSpan.addClass(`sentence sentence-${i} tooltipped`);
         sentenceSpan.attr("data-position", "right");
         // TODO better description than sentiment magnitude
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);

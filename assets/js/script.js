@@ -32,7 +32,9 @@ function displaySentiment(sentiment) {
     $("#response").empty();
     for (var i = 0; i < sentiment.sentences.length; i++) {
         var sentenceSpan = $("<span>");
-        sentenceSpan.addClass(`sentence-${i}`);
+        sentenceSpan.addClass(`sentence-${i} tooltipped`);
+        sentenceSpan.attr("data-position", "right");
+        sentenceSpan.attr("data-tooltip", sentiment.sentences[i].sentiment.magnitude);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
             var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));
@@ -44,6 +46,7 @@ function displaySentiment(sentiment) {
         $("#response").append(sentenceSpan);
         $("#response").append(" ");
     }
+    $(".tooltipped").tooltip();
 }
 
 // TODO display the entities and entity sentiment=

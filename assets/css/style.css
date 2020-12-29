@@ -26,3 +26,8 @@ main {
     height: 100%;
     width: 0;
 }
+
+#response {
+    font-size: larger;
+    line-height: 1.5;
+}

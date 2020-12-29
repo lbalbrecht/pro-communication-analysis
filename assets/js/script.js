@@ -53,15 +53,30 @@ function displaySentiment(sentiment) {
     $(".tooltipped").tooltip();
 }
 
-// TODO display the entities and entity sentiment=
+// TODO: Make tooltips appear in response paragraph, not underneath
 function displayEntitySentiment(entitySentiment) {
+
+    console.log(entitySentiment);
+
     for(i=0; i<entitySentiment.entities.length; i++){
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i])
         // Grab the magnitude and score for each entity in the text
         console.log(entitySentiment.entities[i].sentiment.score);
         console.log(entitySentiment.entities[i].sentiment.magnitude);
+
+        // For each entity, create a span with the tooltipped class
+        var entitySpan = $("<span>");
+        entitySpan.addClass("tooltipped");
+        entitySpan.attr("data-position", "left");
+        // TODO: Better description of score and magnitude
+        entitySpan.attr("data-tooltip", `Entity Sentiment Score: ${entitySentiment.entities[i].sentiment.score}, Entity Sentiment Magnitude: ${entitySentiment.entities[i].sentiment.magnitude}`)
+        entitySpan.text(entitySentiment.entities[i].name);
+
+        $("#response").append(entitySpan);
+        $("#response").append(" ");
     }
+    $(".tooltipped").tooltip();
 
 }
 

@@ -8,14 +8,7 @@ Emails are an integral part of professional and business operations; however, a 
 
 Cloud Natural Language is an API that analyzes language and provides information about the perceived tone of the message through a machine-learning-derived understanding of colloquial speech.
 
-* User story
-AS A USER
-I WANT an application that will review the language in my emails
-SO THAT I can be confident that the tone is professional and appropriate
 
-* Acceptance Criteria
-Given a language analysis app
-WHEN I input my email text
-THEN I am presented with an analysis of the message's tone
-WHEN I view the analysis
-THEN I am able to see feedback on specific parts of the message
+## Usage
+
+Enter the text of your email or other professional communication in the input field and press submit. The color in our feedback section represents the positivity of the text, and the magnitude value represents the amount of sentiment. Click on entities (basically any noun) to view sentiment information for how that entity is described in the text, as well as more information about that entity from (Wikipeida)[https://wikipedia.org] when available.

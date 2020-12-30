@@ -41,10 +41,10 @@ function displaySentiment(sentiment) {
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
-            var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));
+            var redAndBlue = Math.floor(256 * (1 - sentiment.sentences[i].sentiment.score));
             sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
         } else if (sentiment.sentences[i].sentiment.score < 0) {
-            var greenAndBlue = Math.floor(256 * (1+sentiment.sentences[i].sentiment.score));
+            var greenAndBlue = Math.floor(256 * (1 + sentiment.sentences[i].sentiment.score));
             sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
         }
         $("#response").append(sentenceSpan);
@@ -55,14 +55,15 @@ function displaySentiment(sentiment) {
 
 // TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
-    for(i=0; i<entitySentiment.entities.length; i++){
-        // Call the displayWikiExtract function for each entity with a Wikipedia URL
-        displayWikiExtract(entitySentiment.entities[i])
-        // Grab the magnitude and score for each entity in the text
-        console.log(entitySentiment.entities[i].sentiment.score);
-        console.log(entitySentiment.entities[i].sentiment.magnitude);
-    }
+    var responseHTML = $("#response").html();
+    console.log(responseHTML);
+    for (var i = 0; i < entitySentiment.entities.length; i++) {
+        for (var j = 0; j < entitySentiment.entities[i].mentions.length; j++) {
 
+        }
+        // Call the displayWikiExtract function for each entity with a Wikipedia URL
+        displayWikiExtract(entitySentiment.entities[i]);
+    }
 }
 
 
@@ -81,7 +82,7 @@ function displayWikiExtract(entity) {
                 var wiki = Object.values(response.query.pages)[0];
 
                 // TODO display the data
-                console.log(wiki.extract);
+                // console.log(wiki.extract);
             });
     }
 }

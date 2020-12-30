@@ -8,6 +8,8 @@ Emails are an integral part of professional and business operations; however, a 
 
 Cloud Natural Language is an API that analyzes language and provides information about the perceived tone of the message through a machine-learning-derived understanding of colloquial speech.
 
+[Deployed on GitHub Pages](https://lbalbrecht.github.io/pro-communication-analysis/).
+
 
 ## Usage
 

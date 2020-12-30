@@ -1,6 +1,6 @@
 body {
     font-family: 'Istok Web', sans-serif;
-    background-color: #fcfaff;
+    background-color: #fff8e1;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -8,6 +8,33 @@ body {
 
 main {
     flex: 1 0 auto;
+}
+
+.nav-expand {
+    background-image: linear-gradient(to right, #00695c, #bdbdbd);
+}
+
+.brand-logo {
+    margin-left: 10vw;
+}
+
+.brand-logo, .footer-copyright, #submit-button {
+    color: #fff8e1;
+}
+
+#instructions {
+    margin-top: 10vh;
+    box-shadow: 10px;
+}
+
+.instruction-line {
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    background-image: linear-gradient(to right, #bdbdbd, #00695c, #bdbdbd);
+    color: #fff8e1;
 }
 
 /* give each sentence a border hover effect to go with the tooltip
@@ -43,4 +70,22 @@ main {
 #response {
     font-size: larger;
     line-height: 1.5;
+}
+
+#red {
+    color: #f00;
+    font-weight: bold;
+}
+
+#green {
+    color: #0f0;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.page-footer {
+    background-image: linear-gradient(to right, #00695c, #bdbdbd);
 }

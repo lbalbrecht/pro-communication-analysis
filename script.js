@@ -1,29 +1,48 @@
+
+
 $(document).ready(function () {
     // handle the form submission
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
         var inputText = $("#textarea1").val()
+        console.log(inputText)
+        
 
+        localStorage.setItem("text", inputText)
+        
         // make the ajax call
         $.ajax({
             // data is the text the user entered
             data: $("#textarea1").val(),
             // my server that handles the authenticated api request
             url: "http://34.83.70.58:5000/",
-            method: "POST"
+            method: "POST",
         }).then(function (response) {
-
+            
+                // display the results on a button click
                 $("#feedback").show()
                 $("#response").append(inputText)
-                $("#submission").hide()
+                // $("#submission").hide()
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
         });
+        $("#clear-button").click(function(d) {
+            d.preventDefault()
+            if(confirm("Would you like to start over?")) {
+                $("#textarea1").val('')
+                $(inputText).val('')
+                $("#response").val('')
+                // $("#feedback").hide()
+                localStorage.clear()
+            }
     });
+    
 });
+
+})
 
 // TODO display the sentiment
 function displaySentiment(sentiment) {

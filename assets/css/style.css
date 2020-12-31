@@ -1,13 +1,39 @@
 body {
     font-family: 'Istok Web', sans-serif;
-    background-color: #fcfaff;
+    background-color: #fff8e1;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url(https://spreadsheetpage.com/images/Notebook-Paper-US-Letter.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 main {
     flex: 1 0 auto;
+}
+
+.nav-expand {
+    background-image: linear-gradient(to right, #00695c, #bdbdbd);
+}
+
+.brand-logo {
+    margin-left: 10vw;
+}
+
+.brand-logo, .footer-copyright, #submit-button {
+    color: #fff8e1;
+}
+
+#instructions {
+    margin-top: 10vh;
+    box-shadow: 10px;
+    background-color: rgba(255,255,255,.75);
+}
+
+
+#user-text {
+    background-color: rgba(255,255,255,.75);
 }
 
 /* give each sentence a border hover effect to go with the tooltip
@@ -43,4 +69,27 @@ main {
 #response {
     font-size: larger;
     line-height: 1.5;
+    background-color: rgba(255,255,255,.5);
+}
+
+.key-paragraph {
+    background-color: rgba(255,255,255,.75);
+}
+
+#red {
+    color: #f00;
+    font-weight: bold;
+}
+
+#green {
+    color: #0f0;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.page-footer {
+    background-image: linear-gradient(to right, #00695c, #bdbdbd);
 }

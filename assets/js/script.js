@@ -91,7 +91,7 @@ function displayEntitySentiment(entitySentiment) {
                         // console.log(before);
                         // console.log(after);
                         // add tags around the entity mention and move it to before
-                        before += `${toSearch.substr(0, matchIndex)}<span class="entity entity-${i} tooltipped" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</span>`;
+                        before += `${toSearch.substr(0, matchIndex)}<span class="entity entity-${i} tooltipped" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</span>`;
                         // after is now the string starting at index of the match index plus the length of the mention
                         after = after.substr(matchIndex + entitySentiment.entities[i].mentions[j].text.content.length);
                         // entity mention has been found
@@ -110,6 +110,11 @@ function displayEntitySentiment(entitySentiment) {
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i]);
     }
+    $(".entity").hover(function(){
+        $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
+    }, function() {
+        $(`.entity-${$(this).attr("data-index")}`).removeClass("entity-hover");
+    })
     $(".tooltipped").tooltip();
 }
 

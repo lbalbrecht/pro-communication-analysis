@@ -4,6 +4,9 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url(https://spreadsheetpage.com/images/Notebook-Paper-US-Letter.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 main {
@@ -25,16 +28,12 @@ main {
 #instructions {
     margin-top: 10vh;
     box-shadow: 10px;
+    background-color: rgba(255,255,255,.75);
 }
 
-.instruction-line {
-    margin: 0;
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    background-image: linear-gradient(to right, #bdbdbd, #00695c, #bdbdbd);
-    color: #fff8e1;
+
+#user-text {
+    background-color: rgba(255,255,255,.75);
 }
 
 /* give each sentence a border hover effect to go with the tooltip
@@ -70,6 +69,11 @@ main {
 #response {
     font-size: larger;
     line-height: 1.5;
+    background-color: rgba(255,255,255,.5);
+}
+
+.key-paragraph {
+    background-color: rgba(255,255,255,.75);
 }
 
 #red {

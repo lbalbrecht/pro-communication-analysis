@@ -96,5 +96,9 @@ main {
 
 
 .entity {
-    background-color: rgba(0,0,0,.5);
+    text-decoration: underline black;
+}
+
+.entity-hover {
+    outline: 1px solid black;
 }

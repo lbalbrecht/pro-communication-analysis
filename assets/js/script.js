@@ -2,7 +2,7 @@ $(document).ready(function () {
     // handle the form submission
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
-        event.preventDefault()
+        event.preventDefault();
 
         // make the ajax call
         $.ajax({
@@ -10,64 +10,79 @@ $(document).ready(function () {
             data: $("#textarea1").val(),
             // my server that handles the authenticated api request
             url: "http://34.83.70.58:5000/",
-            method: "POST",
+            method: "POST"
         }).then(function (response) {
 
             // display the results on a button click
-            $("#feedback").show()
+            $("#feedback").show();
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
-        })
+        });
 
-    })
+    });
 
     $("#clear-button").click(function (d) {
         d.preventDefault()
         if (confirm("This will clear everything. Would you like to start over?")) {
-            $("#textarea1").val('')
-            $("#response").empty()
+            $("#textarea1").val('');
+            $("#response").empty();
         }
     });
     $("#save-button").click(function (s) {
-        s.preventDefault()
-        var inputText = $("#textarea1").val()
-        localStorage.setItem("text", inputText)
+        s.preventDefault();
+        var inputText = $("#textarea1").val();
+        localStorage.setItem("text", inputText);
     })
     $("#load-button").click(function (l) {
-        l.preventDefault()
-        var savedText = localStorage.getItem("text")
-        $("#textarea1").val(savedText)
+        l.preventDefault();
+        var savedText = localStorage.getItem("text");
+        $("#textarea1").val(savedText);
     })
 
     function autoSave() {
-        localStorage.setItem("autosave", $("#textarea1").val())
+        localStorage.setItem("autosave", $("#textarea1").val());
     }
 
-    $("#textarea1").keyup(autoSave)
-    $("#textarea1").change(autoSave)
+    $("#textarea1").keyup(autoSave);
+    $("#textarea1").change(autoSave);
 
-    $("#textarea1").val(localStorage.getItem("autosave"))
-    
+    $("#textarea1").val(localStorage.getItem("autosave"));
+
 
 });
 
-
-// TODO display the sentiment
+// display the sentiment
+// TODO display magnitude
 function displaySentiment(sentiment) {
-    // Display the overall sentiment magnitude and score
-    console.log(sentiment.documentSentiment.magnitude);
-    console.log(sentiment.documentSentiment.score);
-    // Display magnitude and score for each sentence in the text
-    for (i = 0; i < sentiment.sentences.length; i++) {
-        console.log(sentiment.sentences[i].text);
-        console.log(sentiment.sentences[i].sentiment.magnitude);
-        console.log(sentiment.sentences[i].sentiment.score);
+    // display document score
+    $("#score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
+    // display document magnitude
+    $("#document-score").addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${sentiment.documentSentiment.magnitude.toFixed(2)}`);
 
-
+    // display each sentence with color for the score
+    // display magnitude on hover
+    // TODO add paragraph breaks from submitted text
+    $("#response").empty();
+    for (var i = 0; i < sentiment.sentences.length; i++) {
+        var sentenceSpan = $("<span>");
+        sentenceSpan.addClass(`sentence sentence-${i} tooltipped`);
+        sentenceSpan.attr("data-position", "right");
+        // TODO better description than sentiment magnitude
+        sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
+        sentenceSpan.text(sentiment.sentences[i].text.content);
+        if (sentiment.sentences[i].sentiment.score > 0) {
+            var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));
+            sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
+        } else if (sentiment.sentences[i].sentiment.score < 0) {
+            var greenAndBlue = Math.floor(256 * (1+sentiment.sentences[i].sentiment.score));
+            sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
+        }
+        $("#response").append(sentenceSpan);
+        $("#response").append(" ");
     }
-
+    $(".tooltipped").tooltip();
 }
 
 // TODO display the entities and entity sentiment=

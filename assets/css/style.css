@@ -1,0 +1,95 @@
+body {
+    font-family: 'Istok Web', sans-serif;
+    background-color: #fff8e1;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url(https://spreadsheetpage.com/images/Notebook-Paper-US-Letter.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.nav-expand {
+    background-image: linear-gradient(to right, #00695c, #bdbdbd);
+}
+
+.brand-logo {
+    margin-left: 10vw;
+}
+
+.brand-logo, .footer-copyright, #submit-button {
+    color: #fff8e1;
+}
+
+#instructions {
+    margin-top: 10vh;
+    box-shadow: 10px;
+    background-color: rgba(255,255,255,.75);
+}
+
+
+#user-text {
+    background-color: rgba(255,255,255,.75);
+}
+
+/* give each sentence a border hover effect to go with the tooltip
+   TODO fix bottom border being covered by the next span */
+.sentence {
+    border: 1px solid rgba(0, 0, 0, 0);
+    transition: border 0.5s;
+    z-index: 1000;
+}
+
+.sentence:hover {
+    border: 1px solid black;
+    z-index: 1001;
+}
+
+/* scale for the overall document score */
+#document-score {
+    background-image: linear-gradient(90deg, #f00, white, #0f0);
+    height: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* bar to display the score, JS will set the position */
+#score-bar {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    position: relative;
+    height: 100%;
+    width: 0;
+}
+
+#response {
+    font-size: larger;
+    line-height: 1.5;
+    background-color: rgba(255,255,255,.5);
+}
+
+.key-paragraph {
+    background-color: rgba(255,255,255,.75);
+}
+
+#red {
+    color: #f00;
+    font-weight: bold;
+}
+
+#green {
+    color: #0f0;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.page-footer {
+    background-image: linear-gradient(to right, #00695c, #bdbdbd);
+}

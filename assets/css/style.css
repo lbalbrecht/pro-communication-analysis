@@ -93,3 +93,8 @@ main {
 .page-footer {
     background-image: linear-gradient(to right, #00695c, #bdbdbd);
 }
+
+
+.entity {
+    background-color: rgba(0,0,0,.5);
+}

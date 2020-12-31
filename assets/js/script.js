@@ -55,15 +55,70 @@ function displaySentiment(sentiment) {
 
 // TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
-    var responseHTML = $("#response").html();
-    console.log(responseHTML);
+    console.log(entitySentiment);
     for (var i = 0; i < entitySentiment.entities.length; i++) {
         for (var j = 0; j < entitySentiment.entities[i].mentions.length; j++) {
+            // html already checked for this entity mention
+            var before = "";
+            // html to check for this entity mention
+            var after = $("#response").html();
+            // escape regex special characters in the mention and use it as a regex pattern requiring word boundary characters before and after
+            var mentionRegExp = new RegExp(`(\\b|')${entitySentiment.entities[i].mentions[j].text.content.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1")}(\\b|')`);
+            console.log(mentionRegExp);
+            var found = false;
+            // should always be found before after.length == 0 but check just in case to prevent errors
+            while (!found && after.length > 0) {
+                // skip over html tags
+                if (after.startsWith("<")) {
+                    var toSkip = after.match(/<.+?>/)[0];
+                    // if the tag is the span for an entity, skip everything in that span
+                    if (toSkip.includes("entity")) {
+                        toSkip = after.match(/<span.*?>.*?<\/span>/)[0];
+                    }
+                    console.log(toSkip);
+                    // move the tag to the checked variable
+                    before += toSkip;
+                    after = after.substr(toSkip.length);
+                } else {
+                    // select everything until the next html tag
+                    var nextTag = after.indexOf("<");
+                    var toSearch;
+                    if (nextTag > 0) {
+                        toSearch = after.substr(0, nextTag);
+                    } else {
+                        toSearch = after;
+                    }
+                    var matchIndex = toSearch.search(mentionRegExp);
+                    // if the entity mention is found
+                    if (matchIndex > 0) {
+                        // console.log(before);
+                        // console.log(after);
+                        // add tags around the entity mention and move it to before
+                        before += `${toSearch.substr(0, matchIndex)}<span class="entity entity-${i} tooltipped" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</span>`;
+                        // after is now the string starting at index of the match index plus the length of the mention
+                        after = after.substr(matchIndex + entitySentiment.entities[i].mentions[j].text.content.length);
+                        // entity mention has been found
+                        found = true;
+                        console.log("found");
+                    } else {
+                        // move the text that was searched
+                        before += toSearch;
+                        after = after.substr(toSearch.length);
+                    }
+                }
+            }
+            console.log(before);
+            console.log(after);
 
+            $("#response").html(before + after);
+            
+            // console.log(entitySentiment.entities[i].mentions[j]);
         }
+
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i]);
     }
+    $(".tooltipped").tooltip();
 }
 
 

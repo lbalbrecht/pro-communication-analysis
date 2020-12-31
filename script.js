@@ -1,13 +1,8 @@
-
-
 $(document).ready(function () {
     // handle the form submission
     $("#user-text").submit(function (event) {
-        event.preventDefault()
         // prevent the default form behavior
-        // $("#submit-button").click(function (e) {
-        // e.preventDefault();
-        var inputText = $("#textarea1").val()
+        event.preventDefault()
 
         // make the ajax call
         $.ajax({
@@ -20,8 +15,6 @@ $(document).ready(function () {
 
             // display the results on a button click
             $("#feedback").show()
-            $("#response").append(inputText)
-            // $("#submission").hide()
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);

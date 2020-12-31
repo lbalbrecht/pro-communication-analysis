@@ -4,8 +4,6 @@ $(document).ready(function () {
         // prevent the default form behavior
         event.preventDefault();
 
-        $("#instructions").css("display", "none");
-
         // make the ajax call
         $.ajax({
             // data is the text the user entered
@@ -55,27 +53,15 @@ function displaySentiment(sentiment) {
     $(".tooltipped").tooltip();
 }
 
-// TODO: Make tooltips appear in response paragraph, not underneath
+// TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
-
-    console.log(entitySentiment);
-
     for(i=0; i<entitySentiment.entities.length; i++){
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i])
         // Grab the magnitude and score for each entity in the text
         console.log(entitySentiment.entities[i].sentiment.score);
         console.log(entitySentiment.entities[i].sentiment.magnitude);
-
-        // For each entity, create a span with the tooltipped class
-        var entitySpan = $("<span>");
-        entitySpan.addClass("entity")
-        entitySpan.text("");
-        $(".sentence").append(entitySpan);
-
-        
     }
-    
 
 }
 
@@ -94,9 +80,8 @@ function displayWikiExtract(entity) {
                 // there should only be one page returned, so we get the first one
                 var wiki = Object.values(response.query.pages)[0];
 
-                // display the data
+                // TODO display the data
                 console.log(wiki.extract);
-                
             });
     }
 }

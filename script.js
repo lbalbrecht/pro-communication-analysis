@@ -18,39 +18,47 @@ $(document).ready(function () {
             method: "POST",
         }).then(function (response) {
 
-                // display the results on a button click
-                $("#feedback").show()
-                $("#response").append(inputText)
-                // $("#submission").hide()
+            // display the results on a button click
+            $("#feedback").show()
+            $("#response").append(inputText)
+            // $("#submission").hide()
 
-                // call the display functions with the response data
-                displaySentiment(response.sentiment);
-                displayEntitySentiment(response.entitySentiment);
-            })
-            
+            // call the display functions with the response data
+            displaySentiment(response.sentiment);
+            displayEntitySentiment(response.entitySentiment);
         })
-        
-    });
+
+    })
+
     $("#clear-button").click(function (d) {
         d.preventDefault()
-        if (confirm("Would you like to start over?")) {
+        if (confirm("This will clear everything. Would you like to start over?")) {
             $("#textarea1").val('')
             $("#response").empty()
-            // $("#feedback").hide()
-            localStorage.clear()
         }
     });
     $("#save-button").click(function (s) {
         s.preventDefault()
         var inputText = $("#textarea1").val()
         localStorage.setItem("text", inputText)
-        console.log(inputText)
     })
     $("#load-button").click(function (l) {
         l.preventDefault()
         var savedText = localStorage.getItem("text")
         $("#textarea1").val(savedText)
     })
+
+    function autoSave() {
+        localStorage.setItem("autosave", $("#textarea1").val())
+    }
+
+    $("#textarea1").keyup(autoSave)
+    $("#textarea1").change(autoSave)
+
+    $("#textarea1").val(localStorage.getItem("autosave"))
+    
+
+});
 
 
 // TODO display the sentiment

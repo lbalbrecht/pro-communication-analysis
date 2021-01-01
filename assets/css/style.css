@@ -4,7 +4,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-image: url(https://spreadsheetpage.com/images/Notebook-Paper-US-Letter.png);
+    background-image: url(https://dailyroabox.com/wp-content/uploads/2016/11/Lined-Paper-Template.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -13,15 +13,12 @@ main {
     flex: 1 0 auto;
 }
 
-.nav-expand {
-    background-image: linear-gradient(to right, #00695c, #bdbdbd);
-}
 
 .brand-logo {
     margin-left: 10vw;
 }
 
-.brand-logo, .footer-copyright, #submit-button {
+.brand-logo, .footer-copyright, .btn {
     color: #fff8e1;
 }
 
@@ -90,6 +87,3 @@ main {
     font-weight: bold;
 }
 
-.page-footer {
-    background-image: linear-gradient(to right, #00695c, #bdbdbd);
-}

@@ -3,6 +3,7 @@ $(document).ready(function () {
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
+        $("#instructions").css("display", "none");
 
         // make the ajax call
         $.ajax({

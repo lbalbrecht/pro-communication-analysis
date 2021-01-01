@@ -1,5 +1,7 @@
 $(document).ready(function () {
     // handle the form submission
+    $(".tooltipped").tooltip();
+
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
@@ -84,7 +86,9 @@ function displaySentiment(sentiment) {
         $("#response").append(sentenceSpan);
         $("#response").append(" ");
     }
+
     $(".tooltipped").tooltip();
+    
 }
 
 // TODO display the entities and entity sentiment=

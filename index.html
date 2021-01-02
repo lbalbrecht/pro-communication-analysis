@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Email Analyzer</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -25,9 +25,12 @@
 
                 <div class="row">
                     <div class="col s12 xl8 offset-xl2" id="instructions">
-                        <h5 class="instruction-line">Writing an email, memo, or other professional communication, and wondering how your audience will read it? We'll tell you.</h5>
-                        <h5 class="instruction-line">re:Analysis uses machine learning to detect the tone of any piece of text, both overall and line by line.</h5>
-                        <h5 class="instruction-line">Place your text below and hit "submit", and we'll walk you through your results for optimal audience reception. </h5>
+                        <h5 class="instruction-line">Writing an email, memo, or other professional communication, and
+                            wondering how your audience will read it? We'll tell you.</h5>
+                        <h5 class="instruction-line">re:Analysis uses machine learning to detect the tone of any piece
+                            of text, both overall and line by line.</h5>
+                        <h5 class="instruction-line">Place your text below and hit "submit", and we'll walk you through
+                            your results for optimal audience reception. </h5>
                     </div>
                 </div>
 
@@ -43,6 +46,12 @@
                                         </div>
                                         <button class="btn waves-effect waves-light teal lighten-1" id="submit-button"
                                             type="submit" name="action">Submit</button>
+                                        <button class="btn waves-effect waves-light teal lighten-1" id="clear-button"
+                                            name="action">Clear</button>
+                                        <button class="btn waves-effect waves-light teal lighten-1" id="save-button"
+                                            name="action">Save</button>
+                                        <button class="btn waves-effect waves-light teal lighten-1" id="load-button"
+                                            name="action">Load</button>
                                     </div>
                                 </div>
                             </form>
@@ -67,21 +76,33 @@
                             Key:
                         </h5>
                         <p class="key-paragraph">
-                        <span class="bold">Sentiment Score</span> ranges from -1.0 (negative) to 1.0 (positive) and indicates the overall emotional leaning of the text. Color-coding is based on sentiment score.
-                        <br>
-                        <span id="red">Red</span> text indicates a negative score, while <span id="green">green</span> text indicates a positive score. Color saturation corresponds to the strength of the positive or negative score. For example, a score of -.8 will be very saturated, while a score of -.01 will be very desaturated. White text indicates a score of 0.
+                            <span class="bold">Sentiment Score</span> ranges from -1.0 (negative) to 1.0 (positive) and
+                            indicates the overall emotional leaning of the text. Color-coding is based on sentiment
+                            score.
+                            <br>
+                            <span id="red">Red</span> text indicates a negative score, while <span
+                                id="green">green</span> text indicates a positive score. Color saturation corresponds to
+                            the strength of the positive or negative score. For example, a score of -.8 will be very
+                            saturated, while a score of -.01 will be very desaturated. White text indicates a score of
+                            0.
                         </p>
 
                         <p class="key-paragraph">
-                            <span class="bold">Sentiment Magnitude</span> ranges from 0.0 to infinity, and indicates the strength of the emotion in the text. Because each emotional expression present in the text contributes to its magnitude, longer texts may have higher overall magnitude. Hover your cursor over each sentence in your text to view its sentiment magnitude.
+                            <span class="bold">Sentiment Magnitude</span> ranges from 0.0 to infinity, and indicates the
+                            strength of the emotion in the text. Because each emotional expression present in the text
+                            contributes to its magnitude, longer texts may have higher overall magnitude. Hover your
+                            cursor over each sentence in your text to view its sentiment magnitude.
                         </p>
 
                         <p class="key-paragraph">
-                            <span class="bold">Entities</span> refer to most nouns present in the text. Click on the entities in your text to display the sentiment score and magnitude of how this entity is described in the text, along with more information about that entity, if available.
+                            <span class="bold">Entities</span> refer to most nouns present in the text. Click on the
+                            entities in your text to display the sentiment score and magnitude of how this entity is
+                            described in the text, along with more information about that entity, if available.
                         </p>
 
                         <p class="key-paragraph">
-                            Edit your text above and re-submit to see changes to score, magnitude, and entities in real time.
+                            Edit your text above and re-submit to see changes to score, magnitude, and entities in real
+                            time.
                         </p>
 
                     </div>
@@ -94,14 +115,6 @@
     </main>
 
     <footer class="page-footer grey darken-1">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <!-- TODO: Something other than "footer content" -->
-                    <h6>Footer Content</h5>
-                </div>
-            </div>
-        </div>
         <div class="footer-copyright">
             <div class="container">&copy; 2020 re:Analysis</div>
         </div>

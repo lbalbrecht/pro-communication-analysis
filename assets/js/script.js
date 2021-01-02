@@ -12,13 +12,45 @@ $(document).ready(function () {
             url: "http://34.83.70.58:5000/",
             method: "POST"
         }).then(function (response) {
+
+            // display the results on a button click
+            $("#feedback").show();
+
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
-
-            $("#feedback").show();
         });
+
     });
+
+    $("#clear-button").click(function (d) {
+        d.preventDefault()
+        if (confirm("This will clear everything. Would you like to start over?")) {
+            $("#textarea1").val('');
+            $("#response").empty();
+        }
+    });
+    $("#save-button").click(function (s) {
+        s.preventDefault();
+        var inputText = $("#textarea1").val();
+        localStorage.setItem("text", inputText);
+    })
+    $("#load-button").click(function (l) {
+        l.preventDefault();
+        var savedText = localStorage.getItem("text");
+        $("#textarea1").val(savedText);
+    })
+
+    function autoSave() {
+        localStorage.setItem("autosave", $("#textarea1").val());
+    }
+
+    $("#textarea1").keyup(autoSave);
+    $("#textarea1").change(autoSave);
+
+    $("#textarea1").val(localStorage.getItem("autosave"));
+
+
 });
 
 // display the sentiment
@@ -110,9 +142,9 @@ function displayEntitySentiment(entitySentiment) {
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i]);
     }
-    $(".entity").hover(function(){
+    $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
-    }, function() {
+    }, function () {
         $(`.entity-${$(this).attr("data-index")}`).removeClass("entity-hover");
     })
     $(".tooltipped").tooltip();

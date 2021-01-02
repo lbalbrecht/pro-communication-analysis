@@ -4,6 +4,9 @@ $(document).ready(function () {
         // prevent the default form behavior
         event.preventDefault();
 
+        $("#response").empty();
+        $(".modal-holder").empty();
+
         // make the ajax call
         $.ajax({
             // data is the text the user entered
@@ -64,7 +67,6 @@ function displaySentiment(sentiment) {
     // display each sentence with color for the score
     // display magnitude on hover
     // TODO add paragraph breaks from submitted text
-    $("#response").empty();
     for (var i = 0; i < sentiment.sentences.length; i++) {
         var sentenceSpan = $("<span>");
         sentenceSpan.addClass(`sentence sentence-${i} tooltipped`);
@@ -103,7 +105,7 @@ function displayEntitySentiment(entitySentiment) {
                     var toSkip = after.match(/<.+?>/)[0];
                     // if the tag is the span for an entity, skip everything in that span
                     if (toSkip.includes("entity")) {
-                        toSkip = after.match(/<span.*?>.*?<\/span>/)[0];
+                        toSkip = after.match(/<a.*?>.*?<\/a>/)[0];
                     }
                     // move the tag to the checked variable
                     before += toSkip;
@@ -123,7 +125,7 @@ function displayEntitySentiment(entitySentiment) {
                         // console.log(before);
                         // console.log(after);
                         // add tags around the entity mention and move it to before
-                        before += `${toSearch.substr(0, matchIndex)}<span class="entity entity-${i} tooltipped" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</span>`;
+                        before += `${toSearch.substr(0, matchIndex)}<a class="entity entity-${i} modal-trigger" href="#entity-modal-${i}" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</a>`;
                         // after is now the string starting at index of the match index plus the length of the mention
                         after = after.substr(matchIndex + entitySentiment.entities[i].mentions[j].text.content.length);
                         // entity mention has been found
@@ -139,22 +141,28 @@ function displayEntitySentiment(entitySentiment) {
             $("#response").html(before + after);
         }
 
+        var modalDiv = $("<div>").attr("id", `entity-modal-${i}`).addClass("modal")
+            .append($("<div>").addClass("modal-content").append($("<h4>").text(entitySentiment.entities[i].name), $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
+                $("<div>").addClass("modal-footer").append($("<a>").attr("href", "#!").addClass("modal-close waves-effect waves-green btn-flat").text("Close")))
+            .appendTo($(".modal-holder"));
+        // $(".modal-holder").append(`<div class="modal" id=entity-modal-${i}><div class="modal-content"><p>${JSON.stringify(entitySentiment.entities[i])}</p></div></div>`);
+
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
-        displayWikiExtract(entitySentiment.entities[i]);
+        displayWikiExtract(entitySentiment.entities[i], modalDiv);
     }
     $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
     }, function () {
         $(`.entity-${$(this).attr("data-index")}`).removeClass("entity-hover");
     })
-    $(".tooltipped").tooltip();
+    $(".modal").modal();
 }
 
 
 // use the url of a wikipedia page from an entity and the wikipedia api
 // to get an object with the title of the page and the intro as an extract
 // set the wiki data as a property of the entity for future reference
-function displayWikiExtract(entity) {
+function displayWikiExtract(entity, modal) {
     // make sure this entity has a wikipedia url
     if (entity.metadata.wikipedia_url != undefined) {
         // replace the page url with the api url and my parameters
@@ -166,7 +174,10 @@ function displayWikiExtract(entity) {
                 var wiki = Object.values(response.query.pages)[0];
 
                 // TODO display the data
-                // console.log(wiki.extract);
+                console.log(wiki.extract);
+                console.log(modal.html());
+
+                modal.find(".wiki-content").append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract));
             });
     }
 }

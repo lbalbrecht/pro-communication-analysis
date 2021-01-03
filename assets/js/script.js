@@ -44,6 +44,7 @@ $(document).ready(function () {
         l.preventDefault();
         var savedText = localStorage.getItem("text");
         $("#textarea1").val(savedText);
+        M.textareaAutoResize($('#textarea1'));
     })
 
     function autoSave() {
@@ -54,6 +55,7 @@ $(document).ready(function () {
     $("#textarea1").change(autoSave);
 
     $("#textarea1").val(localStorage.getItem("autosave"));
+    M.textareaAutoResize($('#textarea1'));
 
 
 });

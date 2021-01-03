@@ -14,9 +14,9 @@
 
 <body>
     <header>
-        <nav class="nav-expand grey darken-1">
+        <nav class="nav-expand blue darken-4">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo left">re:Analysis</a>
+                <a href="#" class="brand-logo left"><span class="orange-text text-accent-4">re:</span>Analysis</a>
             </div>
         </nav>
     </header>
@@ -45,14 +45,18 @@
                                             <textarea id="textarea1" class="materialize-textarea"></textarea>
                                             <label for="textarea1"></label>
                                         </div>
-                                        <button class="btn waves-effect waves-light teal lighten-1" id="submit-button"
-                                            type="submit" name="action">Submit</button>
-                                        <button class="btn waves-effect waves-light teal lighten-1" id="clear-button"
-                                            name="action">Clear</button>
-                                        <button class="btn waves-effect waves-light teal lighten-1" id="save-button"
-                                            name="action">Save</button>
-                                        <button class="btn waves-effect waves-light teal lighten-1" id="load-button"
-                                            name="action">Load</button>
+                                        <button class="btn tooltipped waves-effect waves-light orange accent-4"
+                                            id="submit-button" data-position="bottom" data-tooltip="re:Analyze Your Text"
+                                            type="submit">Submit</button>
+                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                            id="clear-button" data-position="bootom"
+                                            data-tooltip="Clear Input Field">Clear</button>
+                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                            id="save-button" data-position="bottom"
+                                            data-tooltip="Save To Browser Storage">Save</button>
+                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                            id="load-button" data-position="bottom"
+                                            data-tooltip="Load Saved Text">Load</button>
                                     </div>
                                 </div>
                             </form>
@@ -82,9 +86,9 @@
                             score.
                             <br>
                             <span id="red">Red</span> text indicates a negative score, while <span
-                                id="green">green</span> text indicates a positive score. Color saturation corresponds to
-                            the strength of the positive or negative score. For example, a score of -.8 will be very
-                            saturated, while a score of -.01 will be very desaturated. White text indicates a score of
+                                id="green">green</span> text indicates a positive score. Colors appear darker or lighter
+                            based on the strength of the positive or negative score. For example, a score of -.8 will be
+                            very dark, while a score of -.01 will be very light. White text indicates a score of
                             0.
                         </p>
 
@@ -102,8 +106,7 @@
                         </p>
 
                         <p class="key-paragraph">
-                            Edit your text above and re-submit to see changes to score, magnitude, and entities in real
-                            time.
+                            Edit your text above and re-submit to see changes to score, magnitude, and entities.
                         </p>
 
                     </div>

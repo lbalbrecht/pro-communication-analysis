@@ -85,10 +85,6 @@ main {
     font-weight: bold;
 }
 
-.page-footer {
-    background-image: linear-gradient(to right, #00695c, #bdbdbd);
-}
-
 .modal-header {
     display: flex;
     justify-content: space-between;

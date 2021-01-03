@@ -34,8 +34,9 @@ $(document).ready(function () {
 
     // Clear user's text from input field if they click "yes"
     $("#delete").click(function () {
-        $("#textarea1").val('');
         $("#response").empty();
+        $("#textarea1").val('');
+        M.textareaAutoResize($('#textarea1'));
     })
 
     $("#save-button").click(function (s) {

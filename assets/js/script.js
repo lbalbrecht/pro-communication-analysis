@@ -169,6 +169,7 @@ function displayEntitySentiment(entitySentiment) {
         var entitySentimentScale = $("<div>").addClass("score-scale").appendTo(modalSentiment);
         var entityScoreBar = $("<div>").addClass("score-bar").appendTo(entitySentimentScale);
         entityScoreBar.css("left", `${Math.round(entitySentiment.entities[i].sentiment.score * 50)}%`);
+        entitySentimentScale.addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${entitySentiment.entities[i].sentiment.magnitude.toFixed(2)}`)
 
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i], modalWiki);

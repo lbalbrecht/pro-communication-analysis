@@ -7,9 +7,6 @@ $(document).ready(function () {
         // prevent the default form behavior
         event.preventDefault();
         $("#instructions").css("display", "none");
-
-        $("#instructions").css("display", "none");
-
         $("#response").empty();
         $(".modal-holder").empty();
 

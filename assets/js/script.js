@@ -142,8 +142,11 @@ function displayEntitySentiment(entitySentiment) {
         }
 
         var modalDiv = $("<div>").attr("id", `entity-modal-${i}`).addClass("modal")
-            .append($("<div>").addClass("modal-content").append($("<h4>").text(entitySentiment.entities[i].name), $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
-                $("<div>").addClass("modal-footer").append($("<a>").attr("href", "#!").addClass("modal-close waves-effect waves-green btn-flat").text("Close")))
+            .append($("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
+                .append($("<h4>").text(entitySentiment.entities[i].name),
+                    $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
+                $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
+                $("<div>").addClass("modal-footer"))
             .appendTo($(".modal-holder"));
         // $(".modal-holder").append(`<div class="modal" id=entity-modal-${i}><div class="modal-content"><p>${JSON.stringify(entitySentiment.entities[i])}</p></div></div>`);
 
@@ -177,7 +180,8 @@ function displayWikiExtract(entity, modal) {
                 console.log(wiki.extract);
                 console.log(modal.html());
 
-                modal.find(".wiki-content").append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract));
+                modal.find(".wiki-content").append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
+                    .append(" ... ", $("<a>").text("Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
             });
     }
 }

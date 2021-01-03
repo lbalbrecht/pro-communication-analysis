@@ -92,6 +92,10 @@ main {
     background-image: linear-gradient(to right, #00695c, #bdbdbd);
 }
 
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
 
 .entity {
     outline: 3px solid rgba(0, 0, 0, 0);
@@ -105,4 +109,13 @@ main {
 
 .entity-hover {
     outline: 3px solid orange;
+}
+
+a.modal-close {
+    color: black;
+    transition: color 0.5s;
+}
+
+a.modal-close:hover {
+    color: #999;
 }

@@ -69,9 +69,9 @@ $(document).ready(function () {
 // TODO display magnitude
 function displaySentiment(sentiment) {
     // display document score
-    $("#score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
+    $("#document-score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
     // display document magnitude
-    $("#document-score").addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${sentiment.documentSentiment.magnitude.toFixed(2)}`);
+    $("#document-score-scale").addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${sentiment.documentSentiment.magnitude.toFixed(2)}`);
 
     // display each sentence with color for the score
     // display magnitude on hover
@@ -101,6 +101,7 @@ function displaySentiment(sentiment) {
 // TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
     for (var i = 0; i < entitySentiment.entities.length; i++) {
+        console.log(entitySentiment.entities[i]);
         for (var j = 0; j < entitySentiment.entities[i].mentions.length; j++) {
             // html already checked for this entity mention
             var before = "";
@@ -188,10 +189,7 @@ function displayWikiExtract(entity, modal) {
                 // there should only be one page returned, so we get the first one
                 var wiki = Object.values(response.query.pages)[0];
 
-                // TODO display the data
-                console.log(wiki.extract);
-                console.log(modal.html());
-
+                // display the data
                 modal.find(".wiki-content").append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
                     .append(" ... ", $("<a>").text("Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
             });

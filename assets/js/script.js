@@ -1,6 +1,8 @@
 $(document).ready(function () {
     // handle the form submission
     $(".tooltipped").tooltip();
+    $('.modal').modal();
+
 
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
@@ -29,24 +31,30 @@ $(document).ready(function () {
     });
 
     $("#clear-button").click(function (d) {
+        // Clear user's input text
         d.preventDefault()
-        if (confirm("This will clear everything. Would you like to start over?")) {
+        $("#delete").click(function () {
             $("#textarea1").val('');
             $("#response").empty();
-        }
+        })
     });
+
     $("#save-button").click(function (s) {
+        // Save user input to local storage
         s.preventDefault();
         var inputText = $("#textarea1").val();
         localStorage.setItem("text", inputText);
-    })
+    });
+
     $("#load-button").click(function (l) {
+        // Load saved text from local storage to user input field
         l.preventDefault();
         var savedText = localStorage.getItem("text");
         $("#textarea1").val(savedText);
-    })
+    });
 
     function autoSave() {
+        // Saves user text to local storage as they type
         localStorage.setItem("autosave", $("#textarea1").val());
     }
 
@@ -78,10 +86,10 @@ function displaySentiment(sentiment) {
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
-            var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));
+            var redAndBlue = Math.floor(256 * (1 - sentiment.sentences[i].sentiment.score));
             sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
         } else if (sentiment.sentences[i].sentiment.score < 0) {
-            var greenAndBlue = Math.floor(256 * (1+sentiment.sentences[i].sentiment.score));
+            var greenAndBlue = Math.floor(256 * (1 + sentiment.sentences[i].sentiment.score));
             sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
         }
         $("#response").append(sentenceSpan);
@@ -89,7 +97,7 @@ function displaySentiment(sentiment) {
     }
 
     $(".tooltipped").tooltip();
-    
+
 }
 
 // TODO display the entities and entity sentiment=

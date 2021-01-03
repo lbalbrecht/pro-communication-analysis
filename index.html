@@ -44,12 +44,23 @@
                                             <textarea id="textarea1" class="materialize-textarea"></textarea>
                                             <label for="textarea1"></label>
                                         </div>
+
+                                        <div id="modal1" class="modal">
+                                            <div class="modal-content">
+                                                <h4>This will clear your text. Would you like to start over?</h4>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="delete">Yes, Clear Input Field</a>
+                                              <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, Leave My Text</a>
+                                            </div>
+                                          </div>
+
                                         <button class="btn tooltipped waves-effect waves-light orange accent-4"
                                             id="submit-button" data-position="bottom" data-tooltip="re:Analyze Your Text"
                                             type="submit">Submit</button>
-                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                        <a class="btn modal-trigger tooltipped waves-effect waves-light cyan darken-2"
                                             id="clear-button" data-position="bootom"
-                                            data-tooltip="Clear Input Field">Clear</button>
+                                            data-tooltip="Clear Input Field" href="#modal1">Clear</a>
                                         <button class="btn tooltipped waves-effect waves-light cyan darken-2"
                                             id="save-button" data-position="bottom"
                                             data-tooltip="Save To Browser Storage">Save</button>

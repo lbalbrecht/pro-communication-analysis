@@ -153,18 +153,21 @@ function displayEntitySentiment(entitySentiment) {
             $("#response").html(before + after);
         }
 
-        var modalDiv = $("<div>").attr("id", `entity-modal-${i}`).addClass("modal")
-            .append($("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
-                .append($("<h4>").text(entitySentiment.entities[i].name),
-                    $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
-                $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
-                $("<div>").addClass("modal-footer"))
-            .appendTo($(".modal-holder"));
-        // $(".modal-holder").append(`<div class="modal" id=entity-modal-${i}><div class="modal-content"><p>${JSON.stringify(entitySentiment.entities[i])}</p></div></div>`);
+        var modalSentiment = $("<div>").addClass("modal-sentiment");
+        var modalWiki = $("<div>").addClass("wiki-content");
+
+        var modalContent = $("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
+            .append(
+                $("<h4>").text(entitySentiment.entities[i].name),
+                $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
+            modalSentiment, modalWiki);
+
+        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($(".modal-holder"));
 
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
-        displayWikiExtract(entitySentiment.entities[i], modalDiv);
+        displayWikiExtract(entitySentiment.entities[i], modalWiki);
     }
+    
     $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
     }, function () {
@@ -190,7 +193,7 @@ function displayWikiExtract(entity, modal) {
                 var wiki = Object.values(response.query.pages)[0];
 
                 // display the data
-                modal.find(".wiki-content").append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
+                modal.append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
                     .append(" ... ", $("<a>").text("Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
             });
     }

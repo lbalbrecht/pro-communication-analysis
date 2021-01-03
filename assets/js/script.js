@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // handle the form submission
     $(".tooltipped").tooltip();
+    $('.modal').modal();
 
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
@@ -33,24 +34,30 @@ $(document).ready(function () {
 
     $("#clear-button").click(function (d) {
         d.preventDefault()
-        if (confirm("This will clear everything. Would you like to start over?")) {
+        // Clear user's text from input field if they click "yes"
+        $("#delete").click(function () {
             $("#textarea1").val('');
             $("#response").empty();
-        }
+        })
     });
+
     $("#save-button").click(function (s) {
         s.preventDefault();
+        // Manually save user's text to local storage
         var inputText = $("#textarea1").val();
         localStorage.setItem("text", inputText);
-    })
+    });
+
     $("#load-button").click(function (l) {
         l.preventDefault();
+        // Load saved text to user input field
         var savedText = localStorage.getItem("text");
         $("#textarea1").val(savedText);
         M.textareaAutoResize($('#textarea1'));
-    })
+    });
 
     function autoSave() {
+        // Automatically save text to local storage as user types
         localStorage.setItem("autosave", $("#textarea1").val());
     }
 
@@ -93,7 +100,7 @@ function displaySentiment(sentiment) {
     }
 
     $(".tooltipped").tooltip();
-    
+
 }
 
 // TODO display the entities and entity sentiment=

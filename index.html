@@ -48,9 +48,9 @@
                                         <button class="btn tooltipped waves-effect waves-light orange accent-4"
                                             id="submit-button" data-position="bottom" data-tooltip="re:Analyze Your Text"
                                             type="submit">Submit</button>
-                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
-                                            id="clear-button" data-position="bootom"
-                                            data-tooltip="Clear Input Field">Clear</button>
+                                        <button class="btn tooltipped modal-trigger waves-effect waves-light cyan darken-2"
+                                            id="clear-button" data-position="bottom"
+                                            data-tooltip="Clear Input Field" data-target="clear-modal">Clear</button>
                                         <button class="btn tooltipped waves-effect waves-light cyan darken-2"
                                             id="save-button" data-position="bottom"
                                             data-tooltip="Save To Browser Storage">Save</button>
@@ -120,6 +120,16 @@
 
     <!-- div for modals -->
     <div class="modal-holder"></div>
+    <!-- clear modal separate so it doesn't get cleared -->
+    <div id="clear-modal" class="modal">
+        <div class="modal-content">
+            <h4>This will clear your text from the input field. Do you want to start over?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="delete">Yes, Clear Input Field</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, Leave My Text</a>
+        </div>
+    </div>
 
     <footer class="page-footer blue darken-4">
         <div class="footer-copyright">

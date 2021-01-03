@@ -98,7 +98,7 @@ function displaySentiment(sentiment) {
 
 }
 
-// TODO display the entities and entity sentiment=
+// display the entities and entity sentiment
 function displayEntitySentiment(entitySentiment) {
     for (var i = 0; i < entitySentiment.entities.length; i++) {
         console.log(entitySentiment.entities[i]);
@@ -153,6 +153,7 @@ function displayEntitySentiment(entitySentiment) {
             $("#response").html(before + after);
         }
 
+        // create modal for the entity
         var modalSentiment = $("<div>").addClass("modal-sentiment");
         var modalWiki = $("<div>").addClass("wiki-content");
 
@@ -164,10 +165,15 @@ function displayEntitySentiment(entitySentiment) {
 
         $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($(".modal-holder"));
 
+        // display sentiment
+        var entitySentimentScale = $("<div>").addClass("score-scale").appendTo(modalSentiment);
+        var entityScoreBar = $("<div>").addClass("score-bar").appendTo(entitySentimentScale);
+        entityScoreBar.css("left", `${Math.round(entitySentiment.entities[i].sentiment.score * 50)}%`);
+
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i], modalWiki);
     }
-    
+
     $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
     }, function () {
@@ -194,7 +200,7 @@ function displayWikiExtract(entity, modal) {
 
                 // display the data
                 modal.append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
-                    .append(" ... ", $("<a>").text("Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
+                    .append($("<a>").text(" ... Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
             });
     }
 }

@@ -33,16 +33,14 @@ main {
     background-color: rgba(255,255,255,.75);
 }
 
-/* give each sentence a border hover effect to go with the tooltip
-   TODO fix bottom border being covered by the next span */
+/* give each sentence an outline hover effect to go with the tooltip */
 .sentence {
-    border: 1px solid rgba(0, 0, 0, 0);
-    transition: border 0.5s;
-    z-index: 1000;
+    outline: 1px solid rgba(0, 0, 0, 0);
+    transition: outline 0.5s;
 }
 
 .sentence:hover {
-    border: 1px solid black;
+    outline: 1px solid black;
     z-index: 1001;
 }
 
@@ -87,3 +85,34 @@ main {
     font-weight: bold;
 }
 
+.page-footer {
+    background-image: linear-gradient(to right, #00695c, #bdbdbd);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.entity {
+    outline: 3px solid rgba(0, 0, 0, 0);
+    transition: outline 0.5s;
+    text-decoration: underline orange;
+}
+
+.entity:link {
+    color: black;
+}
+
+.entity-hover {
+    outline: 3px solid orange;
+}
+
+a.modal-close {
+    color: black;
+    transition: color 0.5s;
+}
+
+a.modal-close:hover {
+    color: #999;
+}

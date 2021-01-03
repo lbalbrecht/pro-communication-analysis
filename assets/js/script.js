@@ -9,6 +9,9 @@ $(document).ready(function () {
 
         $("#instructions").css("display", "none");
 
+        $("#response").empty();
+        $(".modal-holder").empty();
+
         // make the ajax call
         $.ajax({
             // data is the text the user entered
@@ -71,7 +74,6 @@ function displaySentiment(sentiment) {
     // display each sentence with color for the score
     // display magnitude on hover
     // TODO add paragraph breaks from submitted text
-    $("#response").empty();
     for (var i = 0; i < sentiment.sentences.length; i++) {
         var sentenceSpan = $("<span>");
         sentenceSpan.addClass(`sentence sentence-${i} tooltipped`);
@@ -80,10 +82,10 @@ function displaySentiment(sentiment) {
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
-            var redAndBlue = Math.floor(256 * (1-sentiment.sentences[i].sentiment.score));
+            var redAndBlue = Math.floor(256 * (1 - sentiment.sentences[i].sentiment.score));
             sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
         } else if (sentiment.sentences[i].sentiment.score < 0) {
-            var greenAndBlue = Math.floor(256 * (1+sentiment.sentences[i].sentiment.score));
+            var greenAndBlue = Math.floor(256 * (1 + sentiment.sentences[i].sentiment.score));
             sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
         }
         $("#response").append(sentenceSpan);
@@ -96,21 +98,83 @@ function displaySentiment(sentiment) {
 
 // TODO display the entities and entity sentiment=
 function displayEntitySentiment(entitySentiment) {
-    for (i = 0; i < entitySentiment.entities.length; i++) {
-        // Call the displayWikiExtract function for each entity with a Wikipedia URL
-        displayWikiExtract(entitySentiment.entities[i])
-        // Grab the magnitude and score for each entity in the text
-        console.log(entitySentiment.entities[i].sentiment.score);
-        console.log(entitySentiment.entities[i].sentiment.magnitude);
-    }
+    for (var i = 0; i < entitySentiment.entities.length; i++) {
+        for (var j = 0; j < entitySentiment.entities[i].mentions.length; j++) {
+            // html already checked for this entity mention
+            var before = "";
+            // html to check for this entity mention
+            var after = $("#response").html();
+            // escape regex special characters in the mention and use it as a regex pattern requiring word boundary characters before and after
+            var mentionRegExp = new RegExp(`(\\b|')${entitySentiment.entities[i].mentions[j].text.content.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1")}(\\b|')`);
+            var found = false;
+            // should always be found before after.length == 0 but check just in case to prevent errors
+            while (!found && after.length > 0) {
+                // skip over html tags
+                if (after.startsWith("<")) {
+                    var toSkip = after.match(/<.+?>/)[0];
+                    // if the tag is the span for an entity, skip everything in that span
+                    if (toSkip.includes("entity")) {
+                        toSkip = after.match(/<a.*?>.*?<\/a>/)[0];
+                    }
+                    // move the tag to the checked variable
+                    before += toSkip;
+                    after = after.substr(toSkip.length);
+                } else {
+                    // select everything until the next html tag
+                    var nextTag = after.indexOf("<");
+                    var toSearch;
+                    if (nextTag > 0) {
+                        toSearch = after.substr(0, nextTag);
+                    } else {
+                        toSearch = after;
+                    }
+                    var matchIndex = toSearch.search(mentionRegExp);
+                    // if the entity mention is found
+                    if (matchIndex >= 0) {
+                        // console.log(before);
+                        // console.log(after);
+                        // add tags around the entity mention and move it to before
+                        before += `${toSearch.substr(0, matchIndex)}<a class="entity entity-${i} modal-trigger" href="#entity-modal-${i}" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</a>`;
+                        // after is now the string starting at index of the match index plus the length of the mention
+                        after = after.substr(matchIndex + entitySentiment.entities[i].mentions[j].text.content.length);
+                        // entity mention has been found
+                        found = true;
+                    } else {
+                        // move the text that was searched
+                        before += toSearch;
+                        after = after.substr(toSearch.length);
+                    }
+                }
+            }
 
+            $("#response").html(before + after);
+        }
+
+        var modalDiv = $("<div>").attr("id", `entity-modal-${i}`).addClass("modal")
+            .append($("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
+                .append($("<h4>").text(entitySentiment.entities[i].name),
+                    $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
+                $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
+                $("<div>").addClass("modal-footer"))
+            .appendTo($(".modal-holder"));
+        // $(".modal-holder").append(`<div class="modal" id=entity-modal-${i}><div class="modal-content"><p>${JSON.stringify(entitySentiment.entities[i])}</p></div></div>`);
+
+        // Call the displayWikiExtract function for each entity with a Wikipedia URL
+        displayWikiExtract(entitySentiment.entities[i], modalDiv);
+    }
+    $(".entity").hover(function () {
+        $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
+    }, function () {
+        $(`.entity-${$(this).attr("data-index")}`).removeClass("entity-hover");
+    })
+    $(".modal").modal();
 }
 
 
 // use the url of a wikipedia page from an entity and the wikipedia api
 // to get an object with the title of the page and the intro as an extract
 // set the wiki data as a property of the entity for future reference
-function displayWikiExtract(entity) {
+function displayWikiExtract(entity, modal) {
     // make sure this entity has a wikipedia url
     if (entity.metadata.wikipedia_url != undefined) {
         // replace the page url with the api url and my parameters
@@ -123,6 +187,10 @@ function displayWikiExtract(entity) {
 
                 // TODO display the data
                 console.log(wiki.extract);
+                console.log(modal.html());
+
+                modal.find(".wiki-content").append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
+                    .append(" ... ", $("<a>").text("Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
             });
     }
 }

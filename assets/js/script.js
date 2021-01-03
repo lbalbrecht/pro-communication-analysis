@@ -69,9 +69,9 @@ $(document).ready(function () {
 // TODO display magnitude
 function displaySentiment(sentiment) {
     // display document score
-    $("#score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
+    $("#document-score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
     // display document magnitude
-    $("#document-score").addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${sentiment.documentSentiment.magnitude.toFixed(2)}`);
+    $("#document-score-scale").addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${sentiment.documentSentiment.magnitude.toFixed(2)}`);
 
     // display each sentence with color for the score
     // display magnitude on hover
@@ -98,9 +98,10 @@ function displaySentiment(sentiment) {
 
 }
 
-// TODO display the entities and entity sentiment=
+// display the entities and entity sentiment
 function displayEntitySentiment(entitySentiment) {
     for (var i = 0; i < entitySentiment.entities.length; i++) {
+        console.log(entitySentiment.entities[i]);
         for (var j = 0; j < entitySentiment.entities[i].mentions.length; j++) {
             // html already checked for this entity mention
             var before = "";
@@ -152,18 +153,28 @@ function displayEntitySentiment(entitySentiment) {
             $("#response").html(before + after);
         }
 
-        var modalDiv = $("<div>").attr("id", `entity-modal-${i}`).addClass("modal")
-            .append($("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
-                .append($("<h4>").text(entitySentiment.entities[i].name),
-                    $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
-                $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
-                $("<div>").addClass("modal-footer"))
-            .appendTo($(".modal-holder"));
-        // $(".modal-holder").append(`<div class="modal" id=entity-modal-${i}><div class="modal-content"><p>${JSON.stringify(entitySentiment.entities[i])}</p></div></div>`);
+        // create modal for the entity
+        var modalSentiment = $("<div>").addClass("modal-sentiment");
+        var modalWiki = $("<div>").addClass("wiki-content");
+
+        var modalContent = $("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
+            .append(
+                $("<h4>").text(entitySentiment.entities[i].name),
+                $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
+            modalSentiment, modalWiki);
+
+        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($(".modal-holder"));
+
+        // display sentiment
+        var entitySentimentScale = $("<div>").addClass("score-scale").appendTo(modalSentiment);
+        var entityScoreBar = $("<div>").addClass("score-bar").appendTo(entitySentimentScale);
+        entityScoreBar.css("left", `${Math.round(entitySentiment.entities[i].sentiment.score * 50)}%`);
+        entitySentimentScale.addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${entitySentiment.entities[i].sentiment.magnitude.toFixed(2)}`)
 
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
-        displayWikiExtract(entitySentiment.entities[i], modalDiv);
+        displayWikiExtract(entitySentiment.entities[i], modalWiki);
     }
+
     $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
     }, function () {
@@ -188,12 +199,9 @@ function displayWikiExtract(entity, modal) {
                 // there should only be one page returned, so we get the first one
                 var wiki = Object.values(response.query.pages)[0];
 
-                // TODO display the data
-                console.log(wiki.extract);
-                console.log(modal.html());
-
-                modal.find(".wiki-content").append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
-                    .append(" ... ", $("<a>").text("Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
+                // display the data
+                modal.append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
+                    .append($("<a>").text(" ... Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
             });
     }
 }

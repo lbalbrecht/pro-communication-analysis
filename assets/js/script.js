@@ -32,14 +32,11 @@ $(document).ready(function () {
 
     });
 
-    $("#clear-button").click(function (d) {
-        d.preventDefault()
-        // Clear user's text from input field if they click "yes"
-        $("#delete").click(function () {
-            $("#textarea1").val('');
-            $("#response").empty();
-        })
-    });
+    // Clear user's text from input field if they click "yes"
+    $("#delete").click(function () {
+        $("#textarea1").val('');
+        $("#response").empty();
+    })
 
     $("#save-button").click(function (s) {
         s.preventDefault();
@@ -153,19 +150,19 @@ function displayEntitySentiment(entitySentiment) {
                     }
                 }
             }
-            
+
             $("#response").html(before + after);
         }
-        
+
         var modalDiv = $("<div>").attr("id", `entity-modal-${i}`).addClass("modal")
-        .append($("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
-        .append($("<h4>").text(entitySentiment.entities[i].name),
-        $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
-        $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
-        $("<div>").addClass("modal-footer"))
-        .appendTo($(".modal-holder"));
+            .append($("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
+                .append($("<h4>").text(entitySentiment.entities[i].name),
+                    $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
+                $("<div>").addClass("modal-sentiment"), $("<div>").addClass("wiki-content")),
+                $("<div>").addClass("modal-footer"))
+            .appendTo($(".modal-holder"));
         // $(".modal-holder").append(`<div class="modal" id=entity-modal-${i}><div class="modal-content"><p>${JSON.stringify(entitySentiment.entities[i])}</p></div></div>`);
-        
+
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
         displayWikiExtract(entitySentiment.entities[i], modalDiv);
     }

@@ -44,7 +44,6 @@ a.modal-close:hover {
 
 .sentence:hover {
     outline: 1px solid black;
-    z-index: 1001;
 }
 
 .key-paragraph {

@@ -3,6 +3,11 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color:#fff3e0;
+}
+
+#instructions, #user-text {
+    background-color:#fff3e0;
 }
 
 main {

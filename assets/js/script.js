@@ -8,7 +8,7 @@ $(document).ready(function () {
         event.preventDefault();
         $("#instructions").css("display", "none");
         $("#response").empty();
-        $(".modal-holder").empty();
+        $("#entity-modals").empty();
 
         // make the ajax call
         $.ajax({
@@ -163,7 +163,7 @@ function displayEntitySentiment(entitySentiment) {
                 $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
             modalSentiment, modalWiki);
 
-        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($(".modal-holder"));
+        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($("#entity-modals"));
 
         // display sentiment
         var entitySentimentScale = $("<div>").addClass("score-scale").appendTo(modalSentiment);
@@ -175,6 +175,7 @@ function displayEntitySentiment(entitySentiment) {
         displayWikiExtract(entitySentiment.entities[i], modalWiki);
     }
 
+    // hover effect to highlight all mentions of an entity
     $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
     }, function () {

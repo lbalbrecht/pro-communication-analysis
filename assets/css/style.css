@@ -9,6 +9,10 @@ main {
     flex: 1 0 auto;
 }
 
+h1 {
+    margin: 0;
+}
+
 /* modal close link hover effect */
 a.modal-close {
     color: black;
@@ -69,6 +73,11 @@ a.modal-close:hover {
     color: black;
 }
 
+/* entity links shouldn't show as visited but just in case */
+.entity:visited {
+    color: black;
+}
+
 .entity-hover {
     outline: 3px solid orange;
 }
@@ -81,6 +90,10 @@ a.modal-close:hover {
 
 #user-text {
     background-color: rgba(255,255,255,.75);
+}
+
+#feedback {
+    display: none;
 }
 
 #response {

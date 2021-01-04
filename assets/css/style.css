@@ -86,12 +86,18 @@ a.modal-close:hover {
     outline: 3px solid orange;
 }
 
-#submission {
-    border-radius: 5px;
+.instruction-line {
+    font-size: 20px;
 }
 
-#instructions {
-    box-shadow: 10px;
+@media not screen and (max-width: 992px) {
+    #instructions {
+        padding-top: 50px;
+    }
+}
+
+#submission {
+    border-radius: 5px;
 }
 
 #feedback {

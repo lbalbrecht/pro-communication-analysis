@@ -3,25 +3,6 @@ $(document).ready(function () {
     $(".tooltipped").tooltip();
     $('.modal').modal();
 
-    // Change load, save, and clear buttons to orange class on mouseenter
-    $(".teal-button").mouseenter(function(){
-        $(this).removeClass("teal darken-1");
-        $(this).addClass("orange accent-4");
-    });
-
-    // Change back on mouseleave
-    $(".teal-button").mouseleave(function(){
-        $(this).removeClass("orange accent-4");
-        $(this).addClass("teal darken-1");
-    });
-
-    // User input textarea background changes to white when in use
-    $("#user-text").click(function(){
-        $(this).removeClass("amber lighten-5");
-    })
-    
-
-   
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
@@ -85,7 +66,6 @@ $(document).ready(function () {
 });
 
 // display the sentiment
-// TODO display magnitude
 function displaySentiment(sentiment) {
     // display document score
     $("#document-score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);

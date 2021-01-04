@@ -3,6 +3,19 @@ $(document).ready(function () {
     $(".tooltipped").tooltip();
     $('.modal').modal();
 
+    // Change load, save, and clear buttons to orange class on mouseenter
+    $(".teal-button").mouseenter(function(){
+        $(this).removeClass("teal darken-1");
+        $(this).addClass("orange accent-4");
+    });
+
+    // Change back on mouseleave
+    $(".teal-button").mouseleave(function(){
+        $(this).removeClass("orange accent-4");
+        $(this).addClass("teal darken-1");
+    });
+
+   
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();

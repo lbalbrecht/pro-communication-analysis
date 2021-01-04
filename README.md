@@ -13,7 +13,15 @@ Cloud Natural Language is an API that analyzes language and provides information
 
 ## Usage
 
-Enter the text of your email or other professional communication in the input field and press submit. The color in our feedback section represents the positivity of the text, and the magnitude value represents the amount of sentiment. Click on entities (basically any noun) to view sentiment information for how that entity is described in the text, as well as more information about that entity from [Wikipedia](https://wikipedia.org) when available.
+Enter the text of your email or other professional communication in the input field and press re:Analyze. The color in our feedback section represents the positivity of the text, and the magnitude value represents the amount of sentiment. Click on entities (basically any noun) to view sentiment information for how that entity is described in the text, as well as more information about that entity from [Wikipedia](https://wikipedia.org) when available.
+
+![re:Analysis Landing Page](assets/Screenshots/landing-page.png?raw=true "Landing Page")
+
+re:Analysis Landing Page
+
+![re:Analysis Sample Feedback](assets/Screenshots/sample-response.png?raw=true "Sample Feedback")
+
+Sample feedback from re:Analysis
 
 ## Built With:
 
@@ -22,15 +30,13 @@ Enter the text of your email or other professional communication in the input fi
 [Wikipedia API:](https://www.mediawiki.org/wiki/API:Main_page) - Took in entity recognition data and returned information entity information when available.
 
 ## Authors: 
-Leighton Albrecht 
-John Jacobson
-Rachel Nelson-Schille 
-=======
-## Screenshots
 
-![re:Analysis Landing Page](assets/Screenshots/landing-page.png?raw=true "Landing Page")
-re:Analysis Landing Page
+-Leighton Albrecht 
+-John Jacobson
+-Rachel Nelson-Schille
 
-![re:Analysis Sample Feedback](assets/Screenshots/sample-response.png?raw=true "Sample Feedback")
-Sample feedback from re:Analysis
+
+
+
+
 

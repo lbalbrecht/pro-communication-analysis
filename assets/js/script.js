@@ -15,6 +15,7 @@ $(document).ready(function () {
         $(this).addClass("teal darken-1");
     });
 
+    // User input textarea background changes to white when in use
     $("#user-text").click(function(){
         $(this).removeClass("orange lighten-5");
     })

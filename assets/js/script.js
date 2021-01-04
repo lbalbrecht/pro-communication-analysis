@@ -15,6 +15,10 @@ $(document).ready(function () {
         $(this).addClass("teal darken-1");
     });
 
+    $("#user-text").click(function(){
+        $(this).removeClass("orange lighten-5");
+    })
+
    
     $("#user-text").submit(function (event) {
         // prevent the default form behavior

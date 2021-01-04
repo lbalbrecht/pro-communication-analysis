@@ -79,7 +79,6 @@ function displaySentiment(sentiment) {
         var sentenceSpan = $("<span>");
         sentenceSpan.addClass(`sentence sentence-${i} tooltipped`);
         sentenceSpan.attr("data-position", "right");
-        // TODO better description than sentiment magnitude
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
@@ -133,8 +132,6 @@ function displayEntitySentiment(entitySentiment) {
                     var matchIndex = toSearch.search(mentionRegExp);
                     // if the entity mention is found
                     if (matchIndex >= 0) {
-                        // console.log(before);
-                        // console.log(after);
                         // add tags around the entity mention and move it to before
                         before += `${toSearch.substr(0, matchIndex)}<a class="entity entity-${i} modal-trigger" href="#entity-modal-${i}" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</a>`;
                         // after is now the string starting at index of the match index plus the length of the mention

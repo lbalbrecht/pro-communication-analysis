@@ -14,3 +14,14 @@ Cloud Natural Language is an API that analyzes language and provides information
 ## Usage
 
 Enter the text of your email or other professional communication in the input field and press submit. The color in our feedback section represents the positivity of the text, and the magnitude value represents the amount of sentiment. Click on entities (basically any noun) to view sentiment information for how that entity is described in the text, as well as more information about that entity from [Wikipedia](https://wikipedia.org) when available.
+
+## Built With:
+
+[Materialize:](https://materializecss.com/getting-started.html) - CSS framework used
+[Google Cloud's Natural Language API:](https://cloud.google.com/natural-language) - Used for sentiment analysis, entity recognition, and entity sentiment data
+[Wikipedia API:](https://www.mediawiki.org/wiki/API:Main_page) - Took in entity recognition data and returned information entity information when available.
+
+## Authors: 
+Leighton Albrecht 
+John Jacobson
+Rachel Nelson-Schille 

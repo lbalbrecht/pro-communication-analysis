@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Analyzer</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="nav-expand blue darken-4">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo left"><span class="orange-text text-accent-4">re:</span>Analysis</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="submission">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col s12 xl8 offset-xl2" id="instructions">
+                        <h5 class="instruction-line">Writing an email, memo, or other professional communication, and
+                            wondering how your audience will read it? We'll tell you.</h5>
+                        <h5 class="instruction-line">re:Analysis uses machine learning to detect the tone of any piece
+                            of text, both overall and line by line.</h5>
+                        <h5 class="instruction-line">Place your text below and hit "re:Analyze", and we'll walk you through
+                            your results for optimal audience reception. </h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 xl8 offset-xl2">
+                        <div class="row">
+                            <form class="col s12" id="user-text">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="input-field">
+                                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                            <label for="textarea1"></label>
+                                        </div>
+                                        <button class="btn waves-effect waves-light orange accent-4" id="submit-button"
+                                            type="submit">re:Analyze</button>
+                                        <button class="btn tooltipped modal-trigger waves-effect waves-light cyan darken-2"
+                                            id="clear-button" data-position="bottom" data-tooltip="Clear Input Field"
+                                            data-target="clear-modal">Clear</button>
+                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                            id="save-button" data-position="bottom"
+                                            data-tooltip="Save To Browser Storage">Save</button>
+                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                            id="load-button" data-position="bottom"
+                                            data-tooltip="Load Saved Text">Load</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:none" id="feedback">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 xl8 offset-xl2">
+                        <div class="score-scale" id="document-score-scale">
+                            <div class="score-bar" id="document-score-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 xl6">
+                        <h5>
+                            Key:
+                        </h5>
+                        <p class="key-paragraph">
+                            <span class="bold">Sentiment Score</span> ranges from -1.0 (negative) to 1.0 (positive) and
+                            indicates the overall emotional leaning of the text. Color-coding is based on sentiment
+                            score.
+                            <br>
+                            <span id="red">Red</span> text indicates a negative score, while <span
+                                id="green">green</span> text indicates a positive score. Colors appear darker or lighter
+                            based on the strength of the positive or negative score. For example, a score of -.8 will be
+                            very dark, while a score of -.01 will be very light. White text indicates a score of
+                            0.
+                        </p>
+
+                        <p class="key-paragraph">
+                            <span class="bold">Sentiment Magnitude</span> ranges from 0.0 to infinity, and indicates the
+                            strength of the emotion in the text. Because each emotional expression present in the text
+                            contributes to its magnitude, longer texts may have higher overall magnitude. Hover your
+                            cursor over each sentence in your text to view its sentiment magnitude.
+                        </p>
+
+                        <p class="key-paragraph">
+                            <span class="bold">Entities</span> refer to most nouns present in the text, and appear
+                            underlined in yellow. Click on the
+                            entities in your text to display the sentiment score and magnitude of how this entity is
+                            described in the text, along with more information about that entity, if available.
+                        </p>
+
+                        <p class="key-paragraph">
+                            Edit your text above and re-submit to see changes to score, magnitude, and entities.
+                        </p>
+
+                    </div>
+                    <div class="col s12 xl6">
+                        <p id="response"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- div for modals -->
+    <div class="modal-holder"></div>
+    <!-- clear modal separate so it doesn't get cleared -->
+    <div id="clear-modal" class="modal">
+        <div class="modal-content">
+            <h4>This will clear your text from the input field. Do you want to start over?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="delete">Yes, Clear Input Field</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, Leave My Text</a>
+        </div>
+    </div>
+
+    <footer class="page-footer blue darken-4">
+        <div class="footer-copyright">
+            <div class="container">&copy; 2020 re:Analysis</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

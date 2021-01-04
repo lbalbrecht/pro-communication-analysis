@@ -1,0 +1,114 @@
+body {
+    font-family: 'Istok Web', sans-serif;
+    background-color: #fff8e1;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url(https://dailyroabox.com/wp-content/uploads/2016/11/Lined-Paper-Template.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+.brand-logo {
+    margin-left: 10vw;
+}
+
+.brand-logo, .footer-copyright, .btn {
+    color: #fff8e1;
+}
+
+#instructions {
+    margin-top: 10vh;
+    box-shadow: 10px;
+    background-color: rgba(255,255,255,.75);
+}
+
+
+#user-text {
+    background-color: rgba(255,255,255,.75);
+}
+
+/* give each sentence an outline hover effect to go with the tooltip */
+.sentence {
+    outline: 1px solid rgba(0, 0, 0, 0);
+    transition: outline 0.5s;
+}
+
+.sentence:hover {
+    outline: 1px solid black;
+    z-index: 1001;
+}
+
+/* scale for the sentiment score */
+.score-scale {
+    background-image: linear-gradient(90deg, #f00, white, #0f0);
+    height: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* bar to display the score, JS will set the position */
+.score-bar {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    position: relative;
+    height: 100%;
+    width: 0;
+}
+
+#response {
+    font-size: larger;
+    line-height: 1.5;
+    background-color: rgba(255,255,255,.5);
+}
+
+.key-paragraph {
+    background-color: rgba(255,255,255,.75);
+}
+
+#red {
+    color: #f00;
+    font-weight: bold;
+}
+
+#green {
+    color: #0f0;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.entity {
+    outline: 3px solid rgba(0, 0, 0, 0);
+    transition: outline 0.5s;
+    text-decoration: underline orange;
+}
+
+.entity:link {
+    color: black;
+}
+
+.entity-hover {
+    outline: 3px solid orange;
+}
+
+a.modal-close {
+    color: black;
+    transition: color 0.5s;
+}
+
+a.modal-close:hover {
+    color: #999;
+}

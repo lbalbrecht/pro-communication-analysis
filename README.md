@@ -25,15 +25,15 @@ Sample feedback from re:Analysis
 
 ## Built With:
 
-[Materialize:](https://materializecss.com/getting-started.html) - CSS framework used
-[Google Cloud's Natural Language API:](https://cloud.google.com/natural-language) - Used for sentiment analysis, entity recognition, and entity sentiment data
-[Wikipedia API:](https://www.mediawiki.org/wiki/API:Main_page) - Took in entity recognition data and returned information entity information when available.
+* [Materialize:](https://materializecss.com/getting-started.html) - CSS framework used
+* [Google Cloud's Natural Language API:](https://cloud.google.com/natural-language) - Used for sentiment analysis, entity recognition, and entity sentiment data
+* [Wikipedia API:](https://www.mediawiki.org/wiki/API:Main_page) - Took in entity recognition data and returned information entity information when available.
 
 ## Authors: 
 
--Leighton Albrecht 
--John Jacobson
--Rachel Nelson-Schille
+* Leighton Albrecht 
+* John Jacobson
+* Rachel Nelson-Schille
 
 
 

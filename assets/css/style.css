@@ -5,6 +5,10 @@ body {
     flex-direction: column;
 }
 
+nav {
+    margin-bottom: 5px;
+}
+
 main {
     flex: 1 0 auto;
 }
@@ -82,14 +86,12 @@ a.modal-close:hover {
     outline: 3px solid orange;
 }
 
-#instructions {
-    margin-top: 10vh;
-    box-shadow: 10px;
-    background-color: rgba(255,255,255,.75);
+#submission {
+    border-radius: 5px;
 }
 
-#user-text {
-    background-color: rgba(255,255,255,.75);
+#instructions {
+    box-shadow: 10px;
 }
 
 #feedback {

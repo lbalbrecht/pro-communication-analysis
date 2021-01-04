@@ -18,6 +18,7 @@ $(document).ready(function () {
     $("#user-text").click(function(){
         $(this).removeClass("orange lighten-5");
     })
+    
 
    
     $("#user-text").submit(function (event) {

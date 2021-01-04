@@ -14,57 +14,59 @@
 
 <body>
     <header>
-        <nav class="nav-expand blue-grey darken-2">
+        <nav class="nav-expand blue darken-4">
             <div class="nav-wrapper">
-                <div class="container">
-                    <!-- h1 tag for semantics -->
-                    <h1><a href="#" class="brand-logo left"><span
-                                class="orange-text text-accent-4">re:</span>Analysis</a></h1>
-                </div>
+                <a href="#" class="brand-logo left"><span class="orange-text text-accent-4">re:</span>Analysis</a>
             </div>
         </nav>
     </header>
     <main>
-        <div class="container">
-            <div id="submission">
+        <div id="submission">
+            <div class="container">
 
-                <!-- instructions for user -->
                 <div class="row">
                     <div class="col s12 xl8 offset-xl2" id="instructions">
-                        <h2></h2>
                         <h5 class="instruction-line">Writing an email, memo, or other professional communication, and
                             wondering how your audience will read it? We'll tell you.</h5>
-                        <h5 class="instruction-line"><span class="bold">re:Analysis</span> uses machine learning to
-                            detect the tone of any piece
+                        <h5 class="instruction-line">re:Analysis uses machine learning to detect the tone of any piece
                             of text, both overall and line by line.</h5>
-                        <h5 class="instruction-line">Place your text below and hit "<span
-                                class="bold">re:Analyze</span>", and we'll walk you
-                            through your results for optimal audience reception. </h5>
+                        <h5 class="instruction-line">Place your text below and hit "re:Analyze", and we'll walk you through
+                            your results for optimal audience reception. </h5>
                     </div>
                 </div>
 
-                <!-- user text submission -->
                 <div class="row">
-                    <form class="col s12 xl8 offset-xl2" id="user-text">
-                        <div class="input-field">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1"></label>
+                    <div class="col s12 xl8 offset-xl2">
+                        <div class="row">
+                            <form class="col s12" id="user-text">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="input-field">
+                                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                            <label for="textarea1"></label>
+                                        </div>
+                                        <button class="btn waves-effect waves-light orange accent-4" id="submit-button"
+                                            type="submit">re:Analyze</button>
+                                        <button class="btn tooltipped modal-trigger waves-effect waves-light cyan darken-2"
+                                            id="clear-button" data-position="bottom" data-tooltip="Clear Input Field"
+                                            data-target="clear-modal">Clear</button>
+                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                            id="save-button" data-position="bottom"
+                                            data-tooltip="Save To Browser Storage">Save</button>
+                                        <button class="btn tooltipped waves-effect waves-light cyan darken-2"
+                                            id="load-button" data-position="bottom"
+                                            data-tooltip="Load Saved Text">Load</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <button class="btn waves-effect waves-light orange accent-4" id="submit-button"
-                            type="submit">re:Analyze</button>
-                        <button class="btn tooltipped modal-trigger waves-effect teal darken-1 teal-button"
-                            id="clear-button" data-position="bottom" data-tooltip="Clear Input Field"
-                            data-target="clear-modal">Clear</button>
-                        <button class="btn tooltipped waves-effect teal darken-1 teal-button" id="save-button"
-                            data-position="bottom" data-tooltip="Save To Browser Storage">Save</button>
-                        <button class="btn tooltipped waves-effect teal darken-1 teal-button" id="load-button"
-                            data-position="bottom" data-tooltip="Load Saved Text">Load</button>
-                    </form>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- div for response and response key -->
-            <div id="feedback">
+        <div style="display:none" id="feedback">
+            <div class="container">
                 <div class="row">
                     <div class="col s12 xl8 offset-xl2">
                         <div class="score-scale" id="document-score-scale">
@@ -113,27 +115,23 @@
                     </div>
                 </div>
             </div>
+        </div>
     </main>
 
     <!-- div for modals -->
-    <div id="modal-holder">
-        <!-- div for entity modals so I can clear them -->
-        <div id="entity-modals"></div>
-
-        <!-- clear modal -->
-        <div id="clear-modal" class="modal">
-            <div class="modal-content">
-                <h4>This will clear your text from the input field. Do you want to start over?</h4>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="delete">Yes, Clear Input
-                    Field</a>
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, Leave My Text</a>
-            </div>
+    <div class="modal-holder"></div>
+    <!-- clear modal separate so it doesn't get cleared -->
+    <div id="clear-modal" class="modal">
+        <div class="modal-content">
+            <h4>This will clear your text from the input field. Do you want to start over?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="delete">Yes, Clear Input Field</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, Leave My Text</a>
         </div>
     </div>
 
-    <footer class="page-footer blue-grey darken-2">
+    <footer class="page-footer blue darken-4">
         <div class="footer-copyright">
             <div class="container">&copy; 2020 re:Analysis</div>
         </div>

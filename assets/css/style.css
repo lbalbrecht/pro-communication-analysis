@@ -1,27 +1,47 @@
 body {
     font-family: 'Istok Web', sans-serif;
+    background-color: #fff8e1;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url(https://dailyroabox.com/wp-content/uploads/2016/11/Lined-Paper-Template.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
 
 main {
     flex: 1 0 auto;
 }
 
-h1 {
-    margin: 0;
+
+.brand-logo {
+    margin-left: 10vw;
 }
 
-/* modal close link hover effect */
-a.modal-close {
-    color: black;
-    transition: color 0.5s;
+.brand-logo, .footer-copyright, .btn {
+    color: #fff8e1;
 }
 
-a.modal-close:hover {
-    color: #999;
+#instructions {
+    margin-top: 10vh;
+    box-shadow: 10px;
+    background-color: rgba(255,255,255,.75);
+}
+
+
+#user-text {
+    background-color: rgba(255,255,255,.75);
+}
+
+/* give each sentence an outline hover effect to go with the tooltip */
+.sentence {
+    outline: 1px solid rgba(0, 0, 0, 0);
+    transition: outline 0.5s;
+}
+
+.sentence:hover {
+    outline: 1px solid black;
+    z-index: 1001;
 }
 
 /* scale for the sentiment score */
@@ -41,18 +61,24 @@ a.modal-close:hover {
     width: 0;
 }
 
-/* give each sentence an outline hover effect to go with the tooltip */
-.sentence {
-    outline: 1px solid rgba(0, 0, 0, 0);
-    transition: outline 0.5s;
-}
-
-.sentence:hover {
-    outline: 1px solid black;
+#response {
+    font-size: larger;
+    line-height: 1.5;
+    background-color: rgba(255,255,255,.5);
 }
 
 .key-paragraph {
     background-color: rgba(255,255,255,.75);
+}
+
+#red {
+    color: #f00;
+    font-weight: bold;
+}
+
+#green {
+    color: #0f0;
+    font-weight: bold;
 }
 
 .bold {
@@ -74,45 +100,15 @@ a.modal-close:hover {
     color: black;
 }
 
-/* entity links shouldn't show as visited but just in case */
-.entity:visited {
-    color: black;
-}
-
 .entity-hover {
     outline: 3px solid orange;
 }
 
-#instructions {
-    margin-top: 10vh;
-    box-shadow: 10px;
-    border-bottom: 1px solid black;
+a.modal-close {
+    color: black;
+    transition: color 0.5s;
 }
 
-#user-text {
-    background-color: rgba(255,255,255,.75);
-    padding-bottom: 5vh;
-    border-radius: 5px;
+a.modal-close:hover {
+    color: #999;
 }
-
-#feedback {
-    display: none;
-}
-
-#response {
-    font-size: larger;
-    line-height: 1.5;
-    background-color: rgba(255,255,255,.5);
-}
-
-#red {
-    color: #f00;
-    font-weight: bold;
-}
-
-#green {
-    color: #0f0;
-    font-weight: bold;
-}
-
-

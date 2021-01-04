@@ -8,7 +8,7 @@ $(document).ready(function () {
         event.preventDefault();
         $("#instructions").css("display", "none");
         $("#response").empty();
-        $("#entity-modals").empty();
+        $(".modal-holder").empty();
 
         // make the ajax call
         $.ajax({
@@ -66,6 +66,7 @@ $(document).ready(function () {
 });
 
 // display the sentiment
+// TODO display magnitude
 function displaySentiment(sentiment) {
     // display document score
     $("#document-score-bar").css("left", `${Math.round(sentiment.documentSentiment.score * 50)}%`);
@@ -79,6 +80,7 @@ function displaySentiment(sentiment) {
         var sentenceSpan = $("<span>");
         sentenceSpan.addClass(`sentence sentence-${i} tooltipped`);
         sentenceSpan.attr("data-position", "right");
+        // TODO better description than sentiment magnitude
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
@@ -132,6 +134,8 @@ function displayEntitySentiment(entitySentiment) {
                     var matchIndex = toSearch.search(mentionRegExp);
                     // if the entity mention is found
                     if (matchIndex >= 0) {
+                        // console.log(before);
+                        // console.log(after);
                         // add tags around the entity mention and move it to before
                         before += `${toSearch.substr(0, matchIndex)}<a class="entity entity-${i} modal-trigger" href="#entity-modal-${i}" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</a>`;
                         // after is now the string starting at index of the match index plus the length of the mention
@@ -159,7 +163,7 @@ function displayEntitySentiment(entitySentiment) {
                 $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
             modalSentiment, modalWiki);
 
-        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($("#entity-modals"));
+        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($(".modal-holder"));
 
         // display sentiment
         var entitySentimentScale = $("<div>").addClass("score-scale").appendTo(modalSentiment);
@@ -171,7 +175,6 @@ function displayEntitySentiment(entitySentiment) {
         displayWikiExtract(entitySentiment.entities[i], modalWiki);
     }
 
-    // hover effect to highlight all mentions of an entity
     $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
     }, function () {

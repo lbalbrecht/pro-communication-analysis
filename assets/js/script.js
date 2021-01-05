@@ -108,7 +108,6 @@ function displaySentiment(sentiment) {
 // display the entities and entity sentiment
 function displayEntitySentiment(entitySentiment) {
     for (var i = 0; i < entitySentiment.entities.length; i++) {
-        console.log(entitySentiment.entities[i]);
         for (var j = 0; j < entitySentiment.entities[i].mentions.length; j++) {
             // html already checked for this entity mention
             var before = "";
@@ -141,8 +140,6 @@ function displayEntitySentiment(entitySentiment) {
                     var matchIndex = toSearch.search(mentionRegExp);
                     // if the entity mention is found
                     if (matchIndex >= 0) {
-                        // console.log(before);
-                        // console.log(after);
                         // add tags around the entity mention and move it to before
                         before += `${toSearch.substr(0, matchIndex)}<a class="entity entity-${i} modal-trigger" href="#entity-modal-${i}" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</a>`;
                         // after is now the string starting at index of the match index plus the length of the mention
@@ -162,13 +159,13 @@ function displayEntitySentiment(entitySentiment) {
 
         // create modal for the entity
         var modalSentiment = $("<div>").addClass("modal-sentiment");
-        var modalWiki = $("<div>").addClass("wiki-content");
+        var modalInfo = $("<div>").addClass("entity-info");
 
         var modalContent = $("<div>").addClass("modal-content").append($("<div>").addClass("modal-header")
             .append(
                 $("<h4>").text(entitySentiment.entities[i].name),
                 $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
-            modalSentiment, modalWiki);
+            modalSentiment, modalInfo);
 
         $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($(".modal-holder"));
 
@@ -179,7 +176,7 @@ function displayEntitySentiment(entitySentiment) {
         entitySentimentScale.addClass("tooltipped").attr("data-position", "top").attr("data-tooltip", `Sentiment Magnitude: ${entitySentiment.entities[i].sentiment.magnitude.toFixed(2)}`)
 
         // Call the displayWikiExtract function for each entity with a Wikipedia URL
-        displayWikiExtract(entitySentiment.entities[i], modalWiki);
+        getEntityInfo(entitySentiment.entities[i], modalInfo);
     }
 
     $(".entity").hover(function () {
@@ -192,12 +189,20 @@ function displayEntitySentiment(entitySentiment) {
 }
 
 
-// use the url of a wikipedia page from an entity and the wikipedia api
-// to get an object with the title of the page and the intro as an extract
-// set the wiki data as a property of the entity for future reference
-function displayWikiExtract(entity, modal) {
-    // make sure this entity has a wikipedia url
-    if (entity.metadata.wikipedia_url != undefined) {
+// either use the url of a wikipedia page from an entity and the wikipedia api
+//     to get an object with the title of the page and the intro as an extract
+// or get the definition of the entity
+function getEntityInfo(entity, infoDiv) {
+    // if there's no wiki url get the definition
+    if (entity.metadata.wikipedia_url == undefined) {
+        $.ajax({
+            url: `https://dictionaryapi.com/api/v3/references/collegiate/json/${entity.name}?key=40aeae98-03df-4de8-b8db-cd69bf3a69e4`,
+            method: "GET"
+        }).then(function(response) {
+            console.log(entity.name);
+            console.log(response);
+        });
+    } else {
         // replace the page url with the api url and my parameters
         // keeping the domain ([language].wikipedia.org) and the title the same
         // for cross language compatability
@@ -207,7 +212,7 @@ function displayWikiExtract(entity, modal) {
                 var wiki = Object.values(response.query.pages)[0];
 
                 // display the data
-                modal.append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
+                infoDiv.append($("<h5>").text(wiki.title), $("<p>").text(wiki.extract.substr(0, 1000))
                     .append($("<a>").text(" ... Read more on Wikipedia").attr("href", entity.metadata.wikipedia_url).attr("target", "_blank")));
             });
     }

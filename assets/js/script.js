@@ -64,6 +64,9 @@ $(document).ready(function () {
     $("#textarea1").change(autoSave);
 
     $("#textarea1").val(localStorage.getItem("autosave"));
+    if ($("#textarea1").val().length > 0) {
+        $("label[for=textarea1").addClass("active");
+    }
     M.textareaAutoResize($('#textarea1'));
 
 

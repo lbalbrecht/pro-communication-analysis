@@ -1,52 +1,36 @@
 body {
     font-family: 'Istok Web', sans-serif;
-    background-color: #fff8e1;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-image: url(https://dailyroabox.com/wp-content/uploads/2016/11/Lined-Paper-Template.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+}
+
+nav {
+    margin-bottom: 5px;
 }
 
 main {
     flex: 1 0 auto;
 }
 
-
-.brand-logo {
-    margin-left: 10vw;
+h1 {
+    margin: 0;
 }
 
-.brand-logo, .footer-copyright, .btn {
-    color: #fff8e1;
+/* modal close link hover effect */
+a.modal-close {
+    color: black;
+    transition: color 0.5s;
 }
 
-#instructions {
-    margin-top: 10vh;
-    box-shadow: 10px;
-    background-color: rgba(255,255,255,.75);
-}
-
-
-#user-text {
-    background-color: rgba(255,255,255,.75);
-}
-
-/* give each sentence an outline hover effect to go with the tooltip */
-.sentence {
-    outline: 1px solid rgba(0, 0, 0, 0);
-    transition: outline 0.5s;
-}
-
-.sentence:hover {
-    outline: 1px solid black;
-    z-index: 1001;
+a.modal-close:hover {
+    color: #999;
 }
 
 /* scale for the sentiment score */
 .score-scale {
-    background-image: linear-gradient(90deg, #f00, white, #0f0);
+    background-image: linear-gradient(90deg, #1E88E5, white, #ff6d00);
+    border-radius: 5px;
     height: 20px;
     display: flex;
     justify-content: center;
@@ -61,24 +45,15 @@ main {
     width: 0;
 }
 
-#response {
-    font-size: larger;
-    line-height: 1.5;
-    background-color: rgba(255,255,255,.5);
+/* give each sentence an outline hover effect to go with the tooltip */
+.sentence {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+    transition: box-shadow 0.5s;
 }
 
-.key-paragraph {
-    background-color: rgba(255,255,255,.75);
-}
-
-#red {
-    color: #f00;
-    font-weight: bold;
-}
-
-#green {
-    color: #0f0;
-    font-weight: bold;
+.sentence:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
 .bold {
@@ -91,24 +66,54 @@ main {
 }
 
 .entity {
-    outline: 3px solid rgba(0, 0, 0, 0);
-    transition: outline 0.5s;
-    text-decoration: underline orange;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+    transition: box-shadow 0.5s;
+    text-decoration: underline;
 }
 
 .entity:link {
     color: black;
 }
 
-.entity-hover {
-    outline: 3px solid orange;
-}
-
-a.modal-close {
+/* entity links shouldn't show as visited but just in case */
+.entity:visited {
     color: black;
-    transition: color 0.5s;
 }
 
-a.modal-close:hover {
-    color: #999;
+.entity-hover {
+    box-shadow: 0 0 3px 2px black;
+}
+
+.instruction-line {
+    font-size: 20px;
+}
+
+@media not screen and (max-width: 992px) {
+    #instructions {
+        padding-top: 50px;
+    }
+}
+
+#submission {
+    border-radius: 5px;
+}
+
+#feedback {
+    display: none;
+}
+
+#response {
+    font-size: larger;
+    line-height: 1.5;
+}
+
+#blue {
+    color: #1E88E5;
+    font-weight: bold;
+}
+
+#orange {
+    color: #ff6d00;
+    font-weight: bold;
 }

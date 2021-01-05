@@ -77,7 +77,20 @@ $(document).ready(function () {
 
 // grab part of speech for each entity
 function grabSyntax(syntax) {
-    console.log(syntax);
+    // console.log(syntax);
+    
+    
+    for (i=0; i<syntax.tokens.length; i++) {
+        console.log(syntax.tokens[i].partOfSpeech.tag);
+
+        if (syntax.tokens[i].partOfSpeech.tag === "NOUN") {
+            console.log(syntax.tokens[i].partOfSpeech.tag);
+        }
+        else {
+            console.log("fuck outta here");
+        }
+        
+    }
 }
 
 

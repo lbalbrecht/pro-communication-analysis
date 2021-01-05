@@ -15,7 +15,7 @@ $(document).ready(function () {
             // data is the text the user entered
             data: $("#textarea1").val(),
             // my server that handles the authenticated api request
-            url: "https://re-analysis.com:5000/",
+            url: "https://re-analysis.com:5443/",
             method: "POST"
         }).then(function (response) {
 

@@ -29,7 +29,7 @@ a.modal-close:hover {
 
 /* scale for the sentiment score */
 .score-scale {
-    background-image: linear-gradient(90deg, #ff6d00, white, #1E88E5);
+    background-image: linear-gradient(90deg, #1E88E5, white, #ff6d00);
     border-radius: 5px;
     height: 20px;
     display: flex;
@@ -108,12 +108,12 @@ a.modal-close:hover {
     line-height: 1.5;
 }
 
-#orange {
-    color: #ff6d00;
+#blue {
+    color: #1E88E5;
     font-weight: bold;
 }
 
-#blue {
-    color: #1E88E5;
+#orange {
+    color: #ff6d00;
     font-weight: bold;
 }

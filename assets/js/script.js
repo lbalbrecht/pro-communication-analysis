@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
-        $("#instructions").css("display", "none");
+        $("#instructions").hide(250);
         $("#response").empty();
         $("#entity-modals").empty();
 

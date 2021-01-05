@@ -93,9 +93,9 @@ function displaySentiment(sentiment) {
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
-            sentenceSpan.css("background-color", `rgba(0, 128, 0, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
+            sentenceSpan.css("background-color", `rgba(30, 136, 229, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
         } else if (sentiment.sentences[i].sentiment.score < 0) {
-            sentenceSpan.css("background-color", `rgba(255, 0, 0, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
+            sentenceSpan.css("background-color", `rgba(255, 109, 0, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
         }
         $("#response").append(sentenceSpan);
         $("#response").append(" ");

@@ -25,6 +25,7 @@ $(document).ready(function () {
             // call the display functions with the response data
             displaySentiment(response.sentiment);
             displayEntitySentiment(response.entitySentiment);
+            grabSyntax(response.syntax);
         });
 
     });
@@ -73,6 +74,12 @@ $(document).ready(function () {
 
 
 });
+
+// grab part of speech for each entity
+function grabSyntax(syntax) {
+    console.log(syntax);
+}
+
 
 // display the sentiment
 // TODO display magnitude
@@ -199,12 +206,15 @@ function getEntityInfo(entity, infoDiv) {
             url: `https://dictionaryapi.com/api/v3/references/collegiate/json/${entity.name}?key=40aeae98-03df-4de8-b8db-cd69bf3a69e4`,
             method: "GET"
         }).then(function (response) {
-            console.log(entity.name);
-            console.log(response);
-            console.log(response[0].shortdef[0]);
+            // console.log(entity.name);
+            // console.log(response);
+            // console.log(response[0].shortdef[0]);
 
             // Append the definitions to the entity popups
-            infoDiv.append($("<p>")).text(response[0].shortdef[0])
+            // for(i=0; i<response[0].shortdef.length; i++){
+            //     infoDiv.append($("<p>")).text(response[i].shortdef[i]);
+            // }
+            
         });
     } else {
         // replace the page url with the api url and my parameters

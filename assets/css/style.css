@@ -30,6 +30,7 @@ a.modal-close:hover {
 /* scale for the sentiment score */
 .score-scale {
     background-image: linear-gradient(90deg, red, white, green);
+    border-radius: 5px;
     height: 20px;
     display: flex;
     justify-content: center;
@@ -46,16 +47,13 @@ a.modal-close:hover {
 
 /* give each sentence an outline hover effect to go with the tooltip */
 .sentence {
-    outline: 1px solid rgba(0, 0, 0, 0);
-    transition: outline 0.5s;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+    transition: box-shadow 0.5s;
 }
 
 .sentence:hover {
-    outline: 1px solid black;
-}
-
-.key-paragraph {
-    background-color: rgba(255,255,255,.75);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
 .bold {
@@ -68,9 +66,10 @@ a.modal-close:hover {
 }
 
 .entity {
-    outline: 3px solid rgba(0, 0, 0, 0);
-    transition: outline 0.5s;
-    text-decoration: underline orange;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+    transition: box-shadow 0.5s;
+    text-decoration: underline;
 }
 
 .entity:link {
@@ -83,7 +82,7 @@ a.modal-close:hover {
 }
 
 .entity-hover {
-    outline: 3px solid orange;
+    box-shadow: 0 0 3px 2px black;
 }
 
 .instruction-line {

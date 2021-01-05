@@ -33,6 +33,7 @@ $(document).ready(function () {
     $("#delete").click(function () {
         $("#response").empty();
         $("#textarea1").val('');
+        $("label[for=textarea1").removeClass("active");
         M.textareaAutoResize($('#textarea1'));
     })
 
@@ -48,6 +49,9 @@ $(document).ready(function () {
         // Load saved text to user input field
         var savedText = localStorage.getItem("text");
         $("#textarea1").val(savedText);
+        if ($("#textarea1").val().length > 0) {
+            $("label[for=textarea1").addClass("active");
+        }
         M.textareaAutoResize($('#textarea1'));
     });
 

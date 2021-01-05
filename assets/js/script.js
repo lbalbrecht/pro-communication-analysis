@@ -20,7 +20,7 @@ $(document).ready(function () {
         }).then(function (response) {
 
             // display the results on a button click
-            $("#feedback").show();
+            $("#feedback").show(250);
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);
@@ -31,10 +31,12 @@ $(document).ready(function () {
 
     // Clear user's text from input field if they click "yes"
     $("#delete").click(function () {
-        $("#response").empty();
-        $("#textarea1").val('');
-        $("label[for=textarea1").removeClass("active");
-        M.textareaAutoResize($('#textarea1'));
+        $("#feedback").hide(250, function () {
+            $("#response").empty();
+            $("#textarea1").val('');
+            $("label[for=textarea1").removeClass("active");
+            M.textareaAutoResize($('#textarea1'));
+        })
     })
 
     $("#save-button").click(function (s) {

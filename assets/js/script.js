@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("#user-text").submit(function (event) {
         // prevent the default form behavior
         event.preventDefault();
-        $("#instructions").css("display", "none");
+        $("#instructions").hide(250);
         $("#response").empty();
         $(".modal-holder").empty();
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
         }).then(function (response) {
 
             // display the results on a button click
-            $("#feedback").show();
+            $("#feedback").show(250);
 
             // call the display functions with the response data
             displaySentiment(response.sentiment);
@@ -31,9 +31,12 @@ $(document).ready(function () {
 
     // Clear user's text from input field if they click "yes"
     $("#delete").click(function () {
-        $("#response").empty();
-        $("#textarea1").val('');
-        M.textareaAutoResize($('#textarea1'));
+        $("#feedback").hide(250, function () {
+            $("#response").empty();
+            $("#textarea1").val('');
+            $("label[for=textarea1").removeClass("active");
+            M.textareaAutoResize($('#textarea1'));
+        })
     })
 
     $("#save-button").click(function (s) {
@@ -48,6 +51,9 @@ $(document).ready(function () {
         // Load saved text to user input field
         var savedText = localStorage.getItem("text");
         $("#textarea1").val(savedText);
+        if ($("#textarea1").val().length > 0) {
+            $("label[for=textarea1").addClass("active");
+        }
         M.textareaAutoResize($('#textarea1'));
     });
 
@@ -60,6 +66,9 @@ $(document).ready(function () {
     $("#textarea1").change(autoSave);
 
     $("#textarea1").val(localStorage.getItem("autosave"));
+    if ($("#textarea1").val().length > 0) {
+        $("label[for=textarea1").addClass("active");
+    }
     M.textareaAutoResize($('#textarea1'));
 
 
@@ -84,11 +93,9 @@ function displaySentiment(sentiment) {
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
-            var redAndBlue = Math.floor(256 * (1 - sentiment.sentences[i].sentiment.score));
-            sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
+            sentenceSpan.css("background-color", `rgba(255, 109, 0, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
         } else if (sentiment.sentences[i].sentiment.score < 0) {
-            var greenAndBlue = Math.floor(256 * (1 + sentiment.sentences[i].sentiment.score));
-            sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
+            sentenceSpan.css("background-color", `rgba(30, 136, 229, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
         }
         $("#response").append(sentenceSpan);
         $("#response").append(" ");

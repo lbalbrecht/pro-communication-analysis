@@ -8,14 +8,14 @@ $(document).ready(function () {
         event.preventDefault();
         $("#instructions").hide(250);
         $("#response").empty();
-        $("#entity-modals").empty();
+        $(".modal-holder").empty();
 
         // make the ajax call
         $.ajax({
             // data is the text the user entered
             data: $("#textarea1").val(),
             // my server that handles the authenticated api request
-            url: "http://34.83.70.58:5000/",
+            url: "https://re-analysis.com:5443/",
             method: "POST"
         }).then(function (response) {
 
@@ -170,7 +170,7 @@ function displayEntitySentiment(entitySentiment) {
                 $("<a>").attr("href", "#!").addClass("modal-close").append($("<span>").addClass("material-icons").text("close"))),
             modalSentiment, modalWiki);
 
-        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($("#entity-modals"));
+        $("<div>").attr("id", `entity-modal-${i}`).addClass("modal").append(modalContent).appendTo($(".modal-holder"));
 
         // display sentiment
         var entitySentimentScale = $("<div>").addClass("score-scale").appendTo(modalSentiment);
@@ -182,7 +182,6 @@ function displayEntitySentiment(entitySentiment) {
         displayWikiExtract(entitySentiment.entities[i], modalWiki);
     }
 
-    // hover effect to highlight all mentions of an entity
     $(".entity").hover(function () {
         $(`.entity-${$(this).attr("data-index")}`).addClass("entity-hover");
     }, function () {

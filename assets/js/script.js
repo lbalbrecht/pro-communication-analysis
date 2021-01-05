@@ -91,11 +91,9 @@ function displaySentiment(sentiment) {
         sentenceSpan.attr("data-tooltip", `Sentiment Magnitude: ${sentiment.sentences[i].sentiment.magnitude.toFixed(2)}`);
         sentenceSpan.text(sentiment.sentences[i].text.content);
         if (sentiment.sentences[i].sentiment.score > 0) {
-            var redAndBlue = Math.floor(256 * (1 - sentiment.sentences[i].sentiment.score));
-            sentenceSpan.css("background-color", `rgb(${redAndBlue}, 255, ${redAndBlue})`);
+            sentenceSpan.css("background-color", `rgba(0, 128, 0, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
         } else if (sentiment.sentences[i].sentiment.score < 0) {
-            var greenAndBlue = Math.floor(256 * (1 + sentiment.sentences[i].sentiment.score));
-            sentenceSpan.css("background-color", `rgb(255, ${greenAndBlue}, ${greenAndBlue})`);
+            sentenceSpan.css("background-color", `rgba(255, 0, 0, ${Math.abs(sentiment.sentences[i].sentiment.score)})`);
         }
         $("#response").append(sentenceSpan);
         $("#response").append(" ");

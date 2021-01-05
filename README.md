@@ -25,18 +25,13 @@ Sample feedback from re:Analysis
 
 ## Built With:
 
+* [jQuery](https://jquery.com/) - JS Library
 * [Materialize:](https://materializecss.com/getting-started.html) - CSS framework used
 * [Google Cloud's Natural Language API:](https://cloud.google.com/natural-language) - Used for sentiment analysis, entity recognition, and entity sentiment data
-* [Wikipedia API:](https://www.mediawiki.org/wiki/API:Main_page) - Took in entity recognition data and returned information entity information when available.
+* [Wikipedia API:](https://www.mediawiki.org/wiki/API:Main_page) - Took in entity recognition data and returned information entity information when available
 
 ## Authors: 
 
-* Leighton Albrecht 
-* John Jacobson
-* Rachel Nelson-Schille
-
-
-
-
-
-
+* [Leighton Albrecht](https://github.com/lbalbrecht)
+* [John Jacobson](https://github.com/JohnDJake)
+* [Rachel Nelson-Schille](https://github.com/RachelNS)

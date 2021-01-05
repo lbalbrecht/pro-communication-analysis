@@ -32,12 +32,6 @@ Sample feedback from re:Analysis
 
 ## Authors: 
 
-* Leighton Albrecht 
-* John Jacobson
-* Rachel Nelson-Schille
-
-
-
-
-
-
+* [Leighton Albrecht](https://github.com/lbalbrecht)
+* [John Jacobson](https://github.com/JohnDJake)
+* [Rachel Nelson-Schille](https://github.com/RachelNS)

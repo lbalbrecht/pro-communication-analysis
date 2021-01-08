@@ -108,7 +108,6 @@ function displaySentiment(sentiment) {
 // display the entities and entity sentiment
 function displayEntitySentiment(entitySentiment) {
     for (var i = 0; i < entitySentiment.entities.length; i++) {
-        console.log(entitySentiment.entities[i]);
         for (var j = 0; j < entitySentiment.entities[i].mentions.length; j++) {
             // html already checked for this entity mention
             var before = "";
@@ -141,8 +140,6 @@ function displayEntitySentiment(entitySentiment) {
                     var matchIndex = toSearch.search(mentionRegExp);
                     // if the entity mention is found
                     if (matchIndex >= 0) {
-                        // console.log(before);
-                        // console.log(after);
                         // add tags around the entity mention and move it to before
                         before += `${toSearch.substr(0, matchIndex)}<a class="entity entity-${i} modal-trigger" href="#entity-modal-${i}" data-index="${i}" data-position="bottom" data-tooltip="Entity ${i}">${entitySentiment.entities[i].mentions[j].text.content}</a>`;
                         // after is now the string starting at index of the match index plus the length of the mention
